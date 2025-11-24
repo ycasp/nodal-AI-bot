@@ -8,7 +8,7 @@ class CreateProducts < ActiveRecord::Migration[7.1]
       t.float :price_unit
       t.float :price_kg
       t.string :country_of_origin
-      t.integer :days_until_expirce
+      t.integer :days_until_expired
 
       t.timestamps
     end
