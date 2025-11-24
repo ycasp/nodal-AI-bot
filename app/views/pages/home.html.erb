@@ -3,20 +3,24 @@
     <h1>Welcome to our shop</h1>
     <p>Sign up to get started!</p>
   </header>
- <main>
-    <section class="signup">
-      <h2>Sign Up</h2>
-      <form id="signup-form">
-        <input type="email" name="email" placeholder="Email address" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <button type="submit">Sign Up</button>
-      </form>
-    </section>
+  <main>
+    <% unless user_signed_in? %>
+      <section class="signup">
+        <h2>Log in</h2>
+        <%= render "devise/sessions/home", resource: @resource, resource_name: @resource_name, devise_mapping: @devise_mapping %>
+      </section>
+    <% else %>
+      <div class="d-flex flex-column justify-content-center align-items-center gap-3">
+        <div>
+        <%= link_to "See our products", products_path, class: "btn btn-primary" %>
+        </div>
+        <div>
+        <%= link_to "Ask Nodaldo", root_path , class: "btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
   </main>
  </div>
-
-
-
 
 
 
