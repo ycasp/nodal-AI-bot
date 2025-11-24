@@ -1,2 +1,30 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container">
+  <header>
+    <h1>Welcome to AI Chatbot</h1>
+    <p>Your smart assistant is  here to assist</p>
+  </header>
+  <main>
+    <section class="chat">
+      <div class="chat-window">
+        <div class="chat-header">
+          <h2>Chatbot</h2>
+        </div>
+        <div class="chat-body">
+          <div class="message bot">Hello! How can I assist you today?</div>
+        </div>
+        <div class="chat-footer">
+          <input type="text" id="user-input" placeholder="Type your message..."/>
+          <button id="send-button">Send</button>
+        </div>
+      </div>
+    </section>
+    <section class="signup">
+      <h2>Sign Up</h2>
+      <form id="signup-form">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="email" name="email" placeholder="Email address" required>
+        <button type="submit">Sign Up</button>
+      </form>
+    </section>
+  </main>
+</div>
