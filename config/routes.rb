@@ -14,4 +14,6 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     sessions: "users/sessions"
   }
+  resources :products, only: [:index, :show]
+
 end
