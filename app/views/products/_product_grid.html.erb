@@ -1,24 +1,24 @@
-    <% @products.each do |product| %>
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <%= link_to product_path(product), class: "text-decoration-none text-dark" do %>
+<% products.each do |product| %>
+  <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+    <%= link_to product_path(product), class: "text-decoration-none text-dark" do %>
 
-          <div class="card h-100 shadow-sm border-0 product-card-hover">
-            <div class="card-body">
+      <div class="card h-100 shadow-sm border-0 product-card-hover">
+        <%= cl_image_tag product.photo.key, class: "card-img-top rounded-top-4 product-card-img" %>
+        <div class="card-body">
+          <h5 class="card-title mb-1"><%= product.name %></h5>
+          <p class="text-muted mb-2"><%= product.category %></p>
 
-              <h5 class="card-title mb-1"><%= product.name %></h5>
-              <p class="text-muted mb-2"><%= product.category %></p>
+          <p class="card-text text-secondary mb-3">
+            <%= product.description %>
+          </p>
 
-              <p class="card-text text-secondary mb-3">
-                <%= product.description %>
-              </p>
+          <p class="fw-semibold mb-0">
+            <%= number_to_currency(product.price_kg, unit: "€") %> / kg
+          </p>
 
-              <p class="fw-semibold mb-0">
-                <%= number_to_currency(product.price_kg, unit: "€") %> / kg
-              </p>
-
-            </div>
-          </div>
-
-        <% end %>
+        </div>
       </div>
+
     <% end %>
+  </div>
+<% end %>

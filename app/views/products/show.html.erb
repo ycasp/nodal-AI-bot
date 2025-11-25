@@ -1,9 +1,28 @@
 <div class="container my-5">
 
-  <div class="row g-4">
+  <!-- Breadcrumb (optional) -->
+  <nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb mb-0">
+      <li class="breadcrumb-item"><%= link_to "Home", root_path %></li>
+      <li class="breadcrumb-item"><%= link_to "Products", products_path %></li>
+      <li class="breadcrumb-item active" aria-current="page"><%= @product.name %></li>
+    </ol>
+  </nav>
 
+  <div class="row g-4 align-items-strech">
+    <%= render "product_show", product: @product %>
+  </div>
 
-    <%= render "product_show" %>
+  <!-- EXTRA DESCRIPTION AREA -->
+  <div class="row mt-5">
+    <div class="col-12">
+      <h2 class="h5 mb-3">About this product</h2>
+      <p><%= @product.description %></p>
+    </div>
+  </div>
 
+  <!-- BACK LINK -->
+  <div class="mt-4">
+    <%= link_to "← Back to products", products_path, class: "btn btn-link px-0" %>
   </div>
 </div>

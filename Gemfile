@@ -81,3 +81,6 @@ gem "cloudinary"
 
 # gem for using llm
 gem "ruby_llm", "~> 1.2.0"
+
+# debug
+gem 'pry-byebug'

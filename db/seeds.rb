@@ -7,20 +7,33 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+require 'open-uri'
+
+User.destroy_all
 Product.destroy_all
 puts "All products deleted: Procduct count = #{Product.count}"
 
+fruits_img = URI.parse("https://media.istockphoto.com/id/529664572/photo/fruit-background.jpg?s=612x612&w=0&k=20&c=K7V0rVCGj8tvluXDqxJgu0AdMKF8axP0A15P-8Ksh3I=").open
+veg_img = URI.parse("https://media.istockphoto.com/id/1203599923/photo/food-background-with-assortment-of-fresh-organic-vegetables.jpg?s=612x612&w=0&k=20&c=DZy1JMfUBkllwiq1Fm_LXtxA4DMDnExuF40jD8u9Z0Q=").open
+dairy_img = URI.parse("https://images.unsplash.com/photo-1550630997-aea8d3d982ed?q=80&w=1528&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D").open
+bake_img = URI.parse("https://plus.unsplash.com/premium_photo-1675788938970-e2716f23b1f9?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D").open
+meat_img = URI.parse("https://images.unsplash.com/photo-1603048297172-c92544798d5a?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D").open
+sea_img = URI.parse("https://images.unsplash.com/photo-1642741580389-87dd75d913f4?q=80&w=3072&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D").open
+freeze_img = URI.parse("https://images.unsplash.com/photo-1651383140368-9b3ee59c2981?q=80&w=1337&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D").open
+pantry_img = URI.parse("https://images.unsplash.com/photo-1651383140368-9b3ee59c2981?q=80&w=1337&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D").open
+bev_img = URI.parse("https://images.unsplash.com/photo-1613590759544-48ad7834d05f?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D").open
+snacks_img = URI.parse("https://images.unsplash.com/photo-1614735241165-6756e1df61ab?q=80&w=3732&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D").open
 CATEGORIES = {
-  "Fruit"      => { price_kg: 2.0..6.0,    shelf: 4..21 },
-  "Vegetable"  => { price_kg: 1.5..5.0,    shelf: 5..21 },
-  "Dairy"      => { price_kg: 1.2..6.0,    shelf: 7..21 },
-  "Bakery"     => { price_kg: 3.0..8.0,    shelf: 2..5  },
-  "Meat"       => { price_kg: 8.0..20.0,   shelf: 2..5  },
-  "Seafood"    => { price_kg: 10.0..30.0,  shelf: 2..4  },
-  "Frozen"     => { price_kg: 2.0..6.0,    shelf: 180..730 },
-  "Pantry"     => { price_kg: 1.0..10.0,   shelf: 180..730 },
-  "Beverage"   => { price_kg: 0.5..4.0,    shelf: 30..365 },
-  "Snacks"     => { price_kg: 5.0..20.0,   shelf: 90..365 }
+  "Fruit"      => { price_kg: 2.0..6.0,    shelf: 4..21, img: fruits_img },
+  "Vegetable"  => { price_kg: 1.5..5.0,    shelf: 5..21, img: veg_img },
+  "Dairy"      => { price_kg: 1.2..6.0,    shelf: 7..21, img: dairy_img },
+  "Bakery"     => { price_kg: 3.0..8.0,    shelf: 2..5, img: bake_img },
+  "Meat"       => { price_kg: 8.0..20.0,   shelf: 2..5, img: meat_img },
+  "Seafood"    => { price_kg: 10.0..30.0,  shelf: 2..4, img: sea_img },
+  "Frozen"     => { price_kg: 2.0..6.0,    shelf: 180..730, img: freeze_img },
+  "Pantry"     => { price_kg: 1.0..10.0,   shelf: 180..730, img: pantry_img },
+  "Beverage"   => { price_kg: 0.5..4.0,    shelf: 30..365, img: bev_img },
+  "Snacks"     => { price_kg: 5.0..20.0,   shelf: 90..365, img: snacks_img },
 }
 
 COUNTRIES = %w[
@@ -93,7 +106,7 @@ def random_days_until_expire(range)
   rand(range)
 end
 
-100.times do |i|
+10.times do |i|
   base_name, category = BASE_PRODUCTS.sample
   config = CATEGORIES[category]
 
@@ -134,9 +147,11 @@ end
   }
 
   # For seeding:
-  Product.create!(attrs)
-
+  prod = Product.new(attrs)
+  prod.photo.attach(io: config[:img], filename: "#{category}.jpg", content_type: "image/png")
+  prod.save!
   # Or, if you just want to inspect:
   # puts attrs.inspect
+  puts "created a product"
 end
 puts "created #{Product.count} number of products, e.g. #{Product.first.name}"
