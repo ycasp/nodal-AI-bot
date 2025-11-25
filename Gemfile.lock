@@ -112,6 +112,11 @@ GEM
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
     cgi (0.5.0)
+    cloudinary (2.4.0)
+      faraday (>= 2.0.1, < 3.0.0)
+      faraday-follow_redirects (~> 0.3.0)
+      faraday-multipart (~> 1.0, >= 1.0.4)
+      ostruct
     concurrent-ruby (1.3.5)
     connection_pool (2.5.4)
     crass (1.0.6)
@@ -133,6 +138,16 @@ GEM
     erb (6.0.0)
     erubi (1.13.1)
     execjs (2.10.0)
+    faraday (2.14.0)
+      faraday-net_http (>= 2.0, < 3.5)
+      json
+      logger
+    faraday-follow_redirects (0.3.0)
+      faraday (>= 1, < 3)
+    faraday-multipart (1.1.1)
+      multipart-post (~> 2.0)
+    faraday-net_http (3.4.2)
+      net-http (~> 0.5)
     ffi (1.17.2-aarch64-linux-gnu)
     ffi (1.17.2-aarch64-linux-musl)
     ffi (1.17.2-arm-linux-gnu)
@@ -159,6 +174,7 @@ GEM
     jbuilder (2.14.1)
       actionview (>= 7.0.0)
       activesupport (>= 7.0.0)
+    json (2.16.0)
     logger (1.7.0)
     loofah (2.24.1)
       crass (~> 1.0.2)
@@ -174,7 +190,10 @@ GEM
     mini_mime (1.1.5)
     minitest (5.26.2)
     msgpack (1.8.0)
+    multipart-post (2.4.1)
     mutex_m (0.3.0)
+    net-http (0.8.0)
+      uri (>= 0.11.1)
     net-imap (0.5.12)
       date
       net-protocol
@@ -202,6 +221,7 @@ GEM
     nokogiri (1.18.10-x86_64-linux-musl)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    ostruct (0.6.3)
     pg (1.6.2)
     pg (1.6.2-aarch64-linux)
     pg (1.6.2-aarch64-linux-musl)
@@ -307,6 +327,7 @@ GEM
       railties (>= 7.1.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    uri (1.1.1)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.1)
@@ -340,6 +361,7 @@ DEPENDENCIES
   bootsnap
   bootstrap (~> 5.3)
   capybara
+  cloudinary
   debug
   devise
   dotenv-rails
