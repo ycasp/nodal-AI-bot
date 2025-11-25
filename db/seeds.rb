@@ -7,20 +7,25 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+require 'open-uri'
+
+User.destroy_all
 Product.destroy_all
 puts "All products deleted: Procduct count = #{Product.count}"
 
+fruits_img = URI.parse("https://media.istockphoto.com/id/529664572/photo/fruit-background.jpg?s=612x612&w=0&k=20&c=K7V0rVCGj8tvluXDqxJgu0AdMKF8axP0A15P-8Ksh3I=").open
+
 CATEGORIES = {
-  "Fruit"      => { price_kg: 2.0..6.0,    shelf: 4..21 },
-  "Vegetable"  => { price_kg: 1.5..5.0,    shelf: 5..21 },
-  "Dairy"      => { price_kg: 1.2..6.0,    shelf: 7..21 },
-  "Bakery"     => { price_kg: 3.0..8.0,    shelf: 2..5  },
-  "Meat"       => { price_kg: 8.0..20.0,   shelf: 2..5  },
-  "Seafood"    => { price_kg: 10.0..30.0,  shelf: 2..4  },
-  "Frozen"     => { price_kg: 2.0..6.0,    shelf: 180..730 },
-  "Pantry"     => { price_kg: 1.0..10.0,   shelf: 180..730 },
-  "Beverage"   => { price_kg: 0.5..4.0,    shelf: 30..365 },
-  "Snacks"     => { price_kg: 5.0..20.0,   shelf: 90..365 }
+  "Fruit"      => { price_kg: 2.0..6.0,    shelf: 4..21, img: fruits_img },
+  "Vegetable"  => { price_kg: 1.5..5.0,    shelf: 5..21, img: fruits_img },
+  "Dairy"      => { price_kg: 1.2..6.0,    shelf: 7..21, img: fruits_img },
+  "Bakery"     => { price_kg: 3.0..8.0,    shelf: 2..5, img: fruits_img },
+  "Meat"       => { price_kg: 8.0..20.0,   shelf: 2..5, img: fruits_img },
+  "Seafood"    => { price_kg: 10.0..30.0,  shelf: 2..4, img: fruits_img },
+  "Frozen"     => { price_kg: 2.0..6.0,    shelf: 180..730, img: fruits_img },
+  "Pantry"     => { price_kg: 1.0..10.0,   shelf: 180..730, img: fruits_img },
+  "Beverage"   => { price_kg: 0.5..4.0,    shelf: 30..365, img: fruits_img },
+  "Snacks"     => { price_kg: 5.0..20.0,   shelf: 90..365, img: fruits_img }
 }
 
 COUNTRIES = %w[
@@ -93,7 +98,7 @@ def random_days_until_expire(range)
   rand(range)
 end
 
-100.times do |i|
+50.times do |i|
   base_name, category = BASE_PRODUCTS.sample
   config = CATEGORIES[category]
 
@@ -134,9 +139,11 @@ end
   }
 
   # For seeding:
-  Product.create!(attrs)
-
+  prod = Product.new(attrs)
+  prod.photo.attach(io: config[:img], filename: "#{category}.jpg", content_type: "image/png")
+  prod.save!
   # Or, if you just want to inspect:
   # puts attrs.inspect
+  # puts "created a product"
 end
 puts "created #{Product.count} number of products, e.g. #{Product.first.name}"
