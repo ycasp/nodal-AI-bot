@@ -75,7 +75,6 @@ end
 
 # gem for authentification
 gem "devise"
-gem "pry-byebug"
 
 # gem for picuture saving - heroku is empheral
 gem "cloudinary"
