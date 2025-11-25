@@ -1,0 +1,106 @@
+<div class="container my-5">
+
+  <!-- Breadcrumb (optional) -->
+  <nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb mb-0">
+      <li class="breadcrumb-item"><%= link_to "Home", root_path %></li>
+      <li class="breadcrumb-item"><%= link_to "Products", products_path %></li>
+      <li class="breadcrumb-item active" aria-current="page"><%= @product.name %></li>
+    </ol>
+  </nav>
+
+  <div class="row g-4 align-items-start">
+    <!-- IMAGE -->
+    <div class="col-12 col-md-5 text-center">
+      <%# image reserved for later %>
+      <%# <% image_tag(@product.image_url || "placeholder.png",
+                    class: "img-fluid rounded shadow-sm",
+                    alt: @product.name) %>
+    </div>
+
+    <!-- INFO PANEL -->
+    <div class="col-12 col-md-7">
+      <div class="bg-light rounded-3 p-4 p-md-5 h-100 d-flex flex-column justify-content-between">
+
+        <div>
+          <!-- NAME + CATEGORY -->
+          <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+            <h1 class="h3 mb-0"><%= @product.name %></h1>
+            <% if @product.category.present? %>
+              <span class="badge bg-secondary"><%= @product.category %></span>
+            <% end %>
+          </div>
+
+          <!-- SHORT DESCRIPTION -->
+          <p class="mb-3 text-muted">
+            <%= @product.description %>
+          </p>
+
+          <!-- PRICES (B2B FOCUS) -->
+          <div class="mb-3">
+            <% if @product.price_kg.present? %>
+              <div>
+                <span class="fs-2 fw-bold text-danger">
+                  <%= number_to_currency(@product.price_kg, unit: "€") %>
+                </span>
+                <span class="ms-1 fw-semibold">/ kg</span>
+              </div>
+            <% end %>
+
+            <% if @product.price_unit.present? %>
+              <div class="text-muted small">
+                <%= number_to_currency(@product.price_unit, unit: "€") %> / unit
+              </div>
+            <% end %>
+          </div>
+
+          <!-- B2B DETAILS ROW -->
+          <div class="row small text-muted gy-2">
+            <% if @product.minimum_qty.present? %>
+              <div class="col-6 col-sm-4">
+                <span class="d-block fw-semibold">Min. order</span>
+                <span><%= @product.minimum_qty %></span>
+              </div>
+            <% end %>
+
+            <% if @product.country_of_origin.present? %>
+              <div class="col-6 col-sm-4">
+                <span class="d-block fw-semibold">Origin</span>
+                <span><%= @product.country_of_origin %></span>
+              </div>
+            <% end %>
+
+            <% if @product.days_until_expired.present? %>
+              <div class="col-6 col-sm-4">
+                <span class="d-block fw-semibold">Shelf life</span>
+                <span><%= @product.days_until_expired.to_i %> days</span>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="d-flex flex-wrap align-items-center gap-3 mt-4">
+          <%= button_to "Add to cart",
+                        "#",
+                        class: "btn btn-danger btn-lg px-4",
+                        method: :post %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- EXTRA DESCRIPTION AREA -->
+  <div class="row mt-5">
+    <div class="col-12">
+      <h2 class="h5 mb-3">About this product</h2>
+      <p><%= @product.description %></p>
+    </div>
+  </div>
+
+  <!-- BACK LINK -->
+  <div class="mt-4">
+    <%= link_to "← Back to products", products_path, class: "btn btn-link px-0" %>
+  </div>
+</div>
