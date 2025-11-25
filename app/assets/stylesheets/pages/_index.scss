@@ -1,12 +1,2 @@
 // Import page-specific CSS files here.
 @import "home";
-
-.product-card-hover {
-  transition: transform .2s ease, box-shadow .2s ease;
-  border-radius: 12px;
-}
-
-.product-card-hover:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 18px rgba(0,0,0,0.08) !important;
-}
