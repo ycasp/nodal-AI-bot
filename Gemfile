@@ -73,5 +73,8 @@ group :test do
   gem "selenium-webdriver"
 end
 
-
+# gem for authentification
 gem "devise"
+
+# gem for picuture saving - heroku is empheral
+gem "cloudinary"
