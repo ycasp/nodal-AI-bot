@@ -1,12 +1,20 @@
-<% if notice %>
+<% if flash[:notice] %>
   <div class="alert alert-info alert-dismissible fade show m-1" role="alert">
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    <%= notice %>
+    <%= flash[:notice] %>
   </div>
 <% end %>
-<% if alert %>
+
+<% if flash[:alert] %>
   <div class="alert alert-warning alert-dismissible fade show m-1" role="alert">
+    <%= flash[:alert] %>
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    <%= alert %>
+  </div>
+<% end %>
+
+<% flash.each do |key, message| %>
+  <div class="alert alert-<%= key == "alert" ? "warning" : "info" %> alert-dismissible fade show m-1" role="alert">
+    <%= message %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
 <% end %>
