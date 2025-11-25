@@ -78,3 +78,6 @@ gem "devise"
 
 # gem for picuture saving - heroku is empheral
 gem "cloudinary"
+
+# gem for using llm
+gem "ruby_llm", "~> 1.2.0"
