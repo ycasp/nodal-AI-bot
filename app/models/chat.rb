@@ -1,6 +1,6 @@
 class Chat < ApplicationRecord
-  belongs_to :product
   belongs_to :user
 
-  has_many :messages, dependent: :destroy
+  has_many :products, through: :chat_products
+  has_many :chat_products, dependent: :destroy
 end
