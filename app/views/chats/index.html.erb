@@ -18,11 +18,35 @@
   </div>
 </div>
 
-<%= simple_form_for(@chat_prod_relation) do |form| %>
+<%= simple_form_for(@chat) do |form| %>
 <%= form.select(:product_ids, @products.collect {|p| [ p.name, p.id ] },
                                                    { :prompt => "Please select"},
                                                    { :multiple => true, :size => 5  }) %>
-<%= button_to "New Chat",  chats_path %>
+<%= form.submit %>
+<% end %>
 
 
+<div class="row">
+  <div class="col-md-3">
+    <h2>Chats</h2>
+    <div class="mb-4">
+      <% if @chats.any? %>
+        <ul>
+          <% @chats.each do |chat| %>
+            <li>
+              <%= link_to chat.title, chats_path(chat) %>
+              <ul>
+                <% chat.products.each do |product|%>
+                  <li> <%= link_to product.name, product_path(product) %> </li>
+                <%end%>
+              </ul>
+            </li>
 
+          <% end %>
+        </ul>
+      <% else %>
+        There are no chats yet.
+      <% end %>
+    </div>
+  </div>
+</div>

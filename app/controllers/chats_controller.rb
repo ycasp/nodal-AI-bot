@@ -2,24 +2,23 @@ class ChatsController < ApplicationController
 
   def index
     @chats = Chat.all
-    # @chat = Chat.new(title: "Untitled")
+    @chat = Chat.new(title: "Untitled")
     @products = Product.all
-    @chat_prod_relation = ChatProduct.new
+    # @chat_prod_relation = ChatProduct.new
   end
 
   def create
-    raise
+
     @chat = Chat.new(title: "Untitled")
     @chat.user = current_user
-
-    product_ids = chat_params[:product_ids]
-
-
-
     if @chat.save
-      redirect_to chat_path(@chat)
+      product_ids = chat_params[:product_ids].compact_blank
+      product_ids.each do |product_id|
+        @chat_products=ChatProduct.create(chat_id: @chat.id, product_id: product_id.to_i)
+      end
+      redirect_to chats_path
     else
-      render "products/show"
+      render "chats/index"
     end
   end
 
@@ -28,6 +27,6 @@ class ChatsController < ApplicationController
   private
 
   def chat_params
-    params.require(:chat).permit(products_ids: [])
+    params.require(:chat).permit(product_ids:[])
   end
 end
