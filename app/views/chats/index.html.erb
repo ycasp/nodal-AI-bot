@@ -16,17 +16,13 @@
     <% end %>
     </div>
   </div>
-
-  <!-- CONTENT PANELS -->
-  <!-- PRODUCTS VIEW -->
-  <div id="products-panel" class="tab-panel">
-    <div class="row g-4">
-      <%= render "product_grid", products: @products %>
-    </div>
-  </div>
-
-  <!-- CHAT VIEW -->
-  <div id="assistant-panel" class="tab-panel d-none">
-    <%= render "product_grid" %> <%# create _chat_view.html.erb for your chat UI %>
-  </div>
 </div>
+
+<%= simple_form_for(@chat_prod_relation) do |form| %>
+<%= form.select(:product_ids, @products.collect {|p| [ p.name, p.id ] },
+                                                   { :prompt => "Please select"},
+                                                   { :multiple => true, :size => 5  }) %>
+<%= button_to "New Chat",  chats_path %>
+
+
+
