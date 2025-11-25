@@ -10,3 +10,10 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+body {
+ font-family: 'Segoe UI', Arial, sans-serif;
+ background: #e9eef6;
+ margin: 0;
+ padding: 0;
+}
