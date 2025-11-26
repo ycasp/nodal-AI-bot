@@ -2,14 +2,14 @@ class ChatsController < ApplicationController
 
   def index
     @chats = current_user.chats.all
-    @chat = Chat.new(title: "Untitled")
+    @chat = Chat.new(title: Chat::DEFAULT_TITLE)
     @products = Product.all
   end
 
   def show
     # for the side bar
     @chats = current_user.chats.all
-    @chat_new = Chat.new(title: "Untitled")
+    @chat_new = Chat.new(title: Chat::DEFAULT_TITLE)
     @products = Product.all
 
     # for the chat window
@@ -19,7 +19,7 @@ class ChatsController < ApplicationController
 
   def create
 
-    @chat = Chat.new(title: "Untitled")
+    @chat = Chat.new(title: Chat::DEFAULT_TITLE)
     @chat.user = current_user
     if @chat.save
       product_ids = chat_params[:product_ids].compact_blank
