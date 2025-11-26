@@ -1,41 +1,38 @@
-<div class="container my-5">
-  <!-- HEADER TABS -->
-  <div class="d-flex justify-content-center align-items-center mb-4">
-    <!-- OUR PRODUCTS (centered, main tab) -->
-    <div class="text-start me-5">
-    <%= link_to products_path do %>
-      <h1 class="fw-bold mb-0">Our Products</h1>
-      <p class="text-muted mb-0">Order now!</p>
+<%= render "shared/product_chat_header", page: "chat" %>
+
+<div class="container-fluid chatbot-app d-flex vh-100">
+
+
+  <div class="chat-list border-end p-3">
+    <%= simple_form_for(@chat) do |form| %>
+      <div class="form-group">
+        <label>Select Products</label>
+        <div class="border rounded p-2" style="max-height: 200px; overflow-y: auto;">
+          <div class="form-check">
+            <input type="checkbox" id="select_all_products" class="form-check-input">
+            <label for="select_all_products" class="form-check-label">All</label>
+          </div>
+          <%= form.input :product_ids,
+                        as: :check_boxes,
+                        collection: @products,
+                        label_method: :name,
+                        value_method: :id,
+                        include_hidden: false,
+                        item_wrapper_class: "form-check",
+                        label: '' %>
+        </div>
+      </div>
+      <%= form.submit "New Chat", class: "btn btn-primary w-100 mb-3" %>
     <% end %>
-    </div>
-    <!-- SHOPPING ASSISTANT (side tab) -->
-    <div class="text-end ms-5">
-    <%= link_to chats_path do %>
-        <h1 class="fw-bold mb-0">Shopping assistant</h1>
-        <p class="text-muted mb-0">Here to help!</p>
-    <% end %>
-    </div>
-  </div>
-</div>
-
-<%= simple_form_for(@chat) do |form| %>
-<%= form.select(:product_ids, @products.collect {|p| [ p.name, p.id ] },
-                                                   { :prompt => "Please select"},
-                                                   { :multiple => true, :size => 5  }) %>
-<%= form.submit %>
-<% end %>
-
-
-<div class="row">
-  <div class="col-md-3">
-    <h2>Chats</h2>
-    <div class="mb-4">
-      <% if @chats.any? %>
-        <ul>
+    <!--
+    <input id="search-chats" type="text" class="form-control mb-3" placeholder="Search chats...">
+    -->
+    <% if @chats.any? %>
+      <ul id="chat-history" class="list-unstyled overflow-auto flex-grow-1">
           <% @chats.each do |chat| %>
             <li>
               <%= link_to chat.title, chats_path(chat) %>
-              <ul>
+              <ul class="list-unstyled overflow-auto flex-grow-1">
                 <% chat.products.each do |product|%>
                   <li> <%= link_to product.name, product_path(product) %> </li>
                 <%end%>
@@ -43,10 +40,22 @@
             </li>
 
           <% end %>
-        </ul>
+      </ul>
       <% else %>
         There are no chats yet.
-      <% end %>
+    <% end %>
+  </div>
+
+
+  <div class="chat-window flex-grow-1 p-3 d-flex flex-column">
+    <div id="message-list" class="message-list mb-3">
+
+    </div>
+
+    <div class="message-input">
+      <input id="message-input" type="text" class="form-control" placeholder="Type your message...">
+      <button id="send-btn" class="btn btn-primary">Send</button>
     </div>
   </div>
+
 </div>

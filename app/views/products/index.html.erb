@@ -1,25 +1,10 @@
-<div class="container my-5">
-  <!-- HEADER TABS -->
-  <div class="d-flex justify-content-center align-items-center mb-4">
-    <!-- OUR PRODUCTS (centered, main tab) -->
-    <div class="text-start me-5">
-    <%= link_to products_path do %>
-      <h1 class="fw-bold mb-0">Our Products</h1>
-      <p class="text-muted mb-0">Order now!</p>
-    <% end %>
-    </div>
-    <!-- SHOPPING ASSISTANT (side tab) -->
-    <div class="text-end ms-5">
-    <%= link_to chats_path do %>
-        <h1 class="fw-bold mb-0">Shopping assistant</h1>
-        <p class="text-muted mb-0">Here to help!</p>
-    <% end %>
-    </div>
-  </div>
+<!-- HEADER TABS -->
+<%= render "shared/product_chat_header", page: "shop" %>
 
+<div class="container">
   <!-- CONTENT PANELS -->
   <!-- PRODUCTS VIEW -->
-  <div id="products-panel" class="tab-panel">
+  <div id="products-panel" class="tab-panel border-top">
     <div class="row g-4">
       <%= render "product_grid", products: @products %>
     </div>
