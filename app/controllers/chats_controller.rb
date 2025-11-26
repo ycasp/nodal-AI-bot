@@ -27,7 +27,7 @@ class ChatsController < ApplicationController
           @chat_products=ChatProduct.create(chat_id: @chat.id, product_id: product_id.to_i)
         end
       end
-      redirect_to chats_path
+      redirect_to chat_path(@chat)
     else
       render "chats/index"
     end
