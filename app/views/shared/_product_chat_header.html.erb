@@ -1,0 +1,45 @@
+<% if page == "shop" %>
+  <div class="border-bottom my-5">
+    <div class="container">
+      <!-- HEADER TABS -->
+      <div class="d-flex justify-content-center align-items-center mb-4">
+        <!-- OUR PRODUCTS (centered, main tab) -->
+        <div class="text-start me-5">
+        <%= link_to products_path do %>
+          <h1 class="text-dark fw-bold mb-0">Our Products</h1>
+          <p class="text-secondary mb-0">Order now!</p>
+        <% end %>
+        </div>
+        <!-- SHOPPING ASSISTANT (side tab) -->
+        <div class="text-end ms-5">
+        <%= link_to chats_path do %>
+            <h1 class="text-muted fw-normal mb-0">Shopping assistant</h1>
+            <p class="text-secondary mb-0">Here to help!</p>
+        <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="border-bottom my-5">
+    <div class="container">
+      <!-- HEADER TABS -->
+      <div class="d-flex justify-content-center align-items-center mb-4">
+        <!-- OUR PRODUCTS (centered, main tab) -->
+        <div class="text-start me-5">
+        <%= link_to products_path do %>
+          <h1 class="text-muted fw-normal mb-0">Our Products</h1>
+          <p class="text-secondary mb-0">Order now!</p>
+        <% end %>
+        </div>
+        <!-- SHOPPING ASSISTANT (side tab) -->
+        <div class="text-end ms-5">
+        <%= link_to chats_path do %>
+            <h1 class="text-dark fw-bold mb-0">Shopping assistant</h1>
+            <p class="text-secondary mb-0">Here to help!</p>
+        <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

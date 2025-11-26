@@ -1,12 +1,17 @@
-<div class="container my-5">
-  <div class="text-center mb-4">
-    <h1 class="fw-bold">Our Products</h1>
-    <p class="text-muted">Your sub-heading on your choice</p>
+<!-- HEADER TABS -->
+<%= render "shared/product_chat_header", page: "shop" %>
+
+<div class="container">
+  <!-- CONTENT PANELS -->
+  <!-- PRODUCTS VIEW -->
+  <div id="products-panel" class="tab-panel border-top">
+    <div class="row g-4">
+      <%= render "product_grid", products: @products %>
+    </div>
   </div>
 
-  <div class="row g-4">
-
-    <%= render "product_grid", products: @products%>
-
+  <!-- CHAT VIEW -->
+  <div id="assistant-panel" class="tab-panel d-none">
+    <%= render "product_grid" %> <%# create _chat_view.html.erb for your chat UI %>
   </div>
 </div>

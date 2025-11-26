@@ -85,3 +85,8 @@ gem "ruby_llm", "~> 1.2.0"
 
 # debug
 gem 'pry-byebug'
+
+# gem for markdown rendering
+gem "kramdown"
+gem "rouge"
+gem "kramdown-parser-gfm"

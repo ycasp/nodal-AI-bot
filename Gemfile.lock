@@ -113,7 +113,6 @@ GEM
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
     cgi (0.5.0)
-    coderay (1.1.3)
     cloudinary (2.4.0)
       faraday (>= 2.0.1, < 3.0.0)
       faraday-follow_redirects (~> 0.3.0)
@@ -181,6 +180,10 @@ GEM
       actionview (>= 7.0.0)
       activesupport (>= 7.0.0)
     json (2.16.0)
+    kramdown (2.5.1)
+      rexml (>= 3.3.9)
+    kramdown-parser-gfm (1.1.0)
+      kramdown (~> 2.0)
     logger (1.7.0)
     loofah (2.24.1)
       crass (~> 1.0.2)
@@ -304,6 +307,7 @@ GEM
       actionpack (>= 7.0)
       railties (>= 7.0)
     rexml (3.4.4)
+    rouge (4.6.1)
     ruby_llm (1.2.0)
       base64
       event_stream_parser (~> 1)
@@ -389,10 +393,13 @@ DEPENDENCIES
   font-awesome-sass (~> 6.1)
   importmap-rails
   jbuilder
+  kramdown
+  kramdown-parser-gfm
   pg (~> 1.1)
   pry-byebug
   puma (>= 5.0)
   rails (~> 7.1.6)
+  rouge
   ruby_llm (~> 1.2.0)
   sassc-rails
   selenium-webdriver

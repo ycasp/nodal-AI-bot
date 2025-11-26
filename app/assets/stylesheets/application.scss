@@ -11,6 +11,10 @@
 @import "components/index";
 @import "pages/index";
 
+a {
+  text-decoration: none;
+}
+
 body {
  font-family: 'Segoe UI', Arial, sans-serif;
  background: #e9eef6;

@@ -1,0 +1,40 @@
+<%= render "shared/product_chat_header", page: "chat" %>
+
+<div class="container-fluid chatbot-app d-flex vh-100">
+
+
+  <%= render "chats/chat_sidebar", chat: @chat_new, products: @products, chats: @chats %>
+
+  <div class="chat-window flex-grow-1 p-3 d-flex flex-column">
+    <div id="message-list" class="message-list mb-3">
+      <% @chat_current.messages.each do |message| %>
+        <% if message.role == "user" %>
+          <div class="d-flex justify-content-end mb-2">
+            <div class="bg-white px-3 pb-0 pt-3 rounded-pill">
+              <%= raw(render_markdown(message.content)) %>
+            </div>
+          </div>
+        <% elsif message.role == "assistant" %>
+          <div class="d-flex justify-content-start mb-5">
+            <div class="px-3 pb-0 pt-3">
+              <%= raw(render_markdown(message.content)) %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+
+    <div class="message-input">
+      <%= simple_form_for [@chat_current, @message] do |f| %>
+        <%= f.input :content, label: "Ask a question", required: true, placeholder: "How should I get started with the challenge?" %>
+        <%= f.button :submit, 'Ask LLM', class: 'btn btn-primary' %>
+      <% end %>
+      <!--
+      <input id="message-input" type="text" class="form-control" placeholder="Type your message...">
+      <button id="send-btn" class="btn btn-primary">Send</button>
+       -->
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,29 @@
+<% if @chats.any? %>
+  <div class="list-group">
+    <% @chats.each_with_index do |chat, idx| %>
+      <div class="list-group-item list-group-item-action <%= 'active' if idx == 0 %>">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">
+            <%= link_to chat.title, chat_path(chat), class: "text-decoration-none" %>
+          </h5>
+          <small class="text-muted">3 days ago</small>
+        </div>
+        <p class="mb-1 text-secondary">
+
+        </p>
+        <ul class="list-unstyled">
+          <% chat.products.each do |product| %>
+            <li>
+              <small class="text-muted">
+                <%= link_to product.name, product_path(product), class: "text-decoration-none" %>
+              </small>
+            </li>
+          <% end %>
+        </ul>
+        <small class="text-muted"></small>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  There are no chats yet.
+<% end %>
