@@ -21,9 +21,11 @@ class ChatsController < ApplicationController
     @chat = Chat.new(title: Chat::DEFAULT_TITLE)
     @chat.user = current_user
     if @chat.save
-      product_ids = chat_params[:product_ids].compact_blank
-      product_ids.each do |product_id|
-        @chat_products=ChatProduct.create(chat_id: @chat.id, product_id: product_id.to_i)
+      unless chat_params.empty?
+        product_ids = chat_params[:product_ids].compact_blank
+        product_ids.each do |product_id|
+          @chat_products=ChatProduct.create(chat_id: @chat.id, product_id: product_id.to_i)
+        end
       end
       redirect_to chats_path
     else
@@ -44,5 +46,6 @@ class ChatsController < ApplicationController
     if params.key?(:chat)
       params.require(:chat).permit(product_ids: [])
     end
+    return {}
   end
 end
