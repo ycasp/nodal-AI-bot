@@ -1,0 +1,61 @@
+<%= render "shared/product_chat_header", page: "chat" %>
+
+<div class="container-fluid chatbot-app d-flex vh-100">
+
+
+  <div class="chat-list border-end p-3">
+    <%= simple_form_for(@chat) do |form| %>
+      <div class="form-group">
+        <label>Select Products</label>
+        <div class="border rounded p-2" style="max-height: 200px; overflow-y: auto;">
+          <div class="form-check">
+            <input type="checkbox" id="select_all_products" class="form-check-input">
+            <label for="select_all_products" class="form-check-label">All</label>
+          </div>
+          <%= form.input :product_ids,
+                        as: :check_boxes,
+                        collection: @products,
+                        label_method: :name,
+                        value_method: :id,
+                        include_hidden: false,
+                        item_wrapper_class: "form-check",
+                        label: '' %>
+        </div>
+      </div>
+      <%= form.submit "New Chat", class: "btn btn-primary w-100 mb-3" %>
+    <% end %>
+    <!--
+    <input id="search-chats" type="text" class="form-control mb-3" placeholder="Search chats...">
+    -->
+    <% if @chats.any? %>
+      <ul id="chat-history" class="list-unstyled overflow-auto flex-grow-1">
+          <% @chats.each do |chat| %>
+            <li>
+              <%= link_to chat.title, chats_path(chat) %>
+              <ul class="list-unstyled overflow-auto flex-grow-1">
+                <% chat.products.each do |product|%>
+                  <li> <%= link_to product.name, product_path(product) %> </li>
+                <%end%>
+              </ul>
+            </li>
+
+          <% end %>
+      </ul>
+      <% else %>
+        There are no chats yet.
+    <% end %>
+  </div>
+
+
+  <div class="chat-window flex-grow-1 p-3 d-flex flex-column">
+    <div id="message-list" class="message-list mb-3">
+
+    </div>
+
+    <div class="message-input">
+      <input id="message-input" type="text" class="form-control" placeholder="Type your message...">
+      <button id="send-btn" class="btn btn-primary">Send</button>
+    </div>
+  </div>
+
+</div>
