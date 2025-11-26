@@ -18,7 +18,6 @@ class ChatsController < ApplicationController
   end
 
   def create
-
     @chat = Chat.new(title: Chat::DEFAULT_TITLE)
     @chat.user = current_user
     if @chat.save
@@ -42,6 +41,8 @@ class ChatsController < ApplicationController
   private
 
   def chat_params
-    params.require(:chat).permit(product_ids:[])
+    if params.key?(:chat)
+      params.require(:chat).permit(product_ids: [])
+    end
   end
 end
