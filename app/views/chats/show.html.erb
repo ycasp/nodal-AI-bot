@@ -3,7 +3,7 @@
 <div class="container-fluid chatbot-app d-flex vh-100">
 
 
-  <%= render "chat_sidebar", chat: @chat_new, products: @products, chats: @chats %>
+  <%= render "chats/chat_sidebar", chat: @chat_new, products: @products, chats: @chats %>
 
   <div class="chat-window flex-grow-1 p-3 d-flex flex-column">
     <div id="message-list" class="message-list mb-3">
