@@ -45,7 +45,8 @@ class ChatsController < ApplicationController
   def chat_params
     if params.key?(:chat)
       params.require(:chat).permit(product_ids: [])
+    else
+      return {}
     end
-    return {}
   end
 end
