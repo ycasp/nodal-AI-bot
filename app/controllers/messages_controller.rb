@@ -4,7 +4,7 @@ class MessagesController < ApplicationController
 
   def create
     @chat = current_user.chats.find(params[:chat_id])
-    @chat_product = @chat.chat_product
+    @chat_product = @chat.products
 
     @message = Message.new(message_params)
     @message.chat = @chat
@@ -12,10 +12,10 @@ class MessagesController < ApplicationController
 
     if @message.save
       ruby_llm_chat = RubyLLM.chat
-      response = ruby_llm_chat.with_instructions(SYSTEM_PROMPT).ask(@message.content)
+      response = ruby_llm_chat.with_instructions(instructions).ask(@message.content)
       Message.create(role: "assistant", content: response.content, chat: @chat)
 
-      redirect_to chat_messages_path(@chat)
+      redirect_to chat_path(@chat)
     else
       render "chats/show", status: :unprocessable_entity
     end
@@ -25,5 +25,17 @@ class MessagesController < ApplicationController
 
   def message_params
     params.require(:message).permit(:content)
+  end
+
+  def chat_product_context
+    context = "Here are the products pre-selected I have interest on: \n\n"
+    @chat_product.each do |product|
+      context += "#{product.name} \n\n"
+    end
+    return context
+  end
+
+  def instructions
+    [SYSTEM_PROMPT, chat_product_context].compact.join("\n\n")
   end
 end
