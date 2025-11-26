@@ -3,12 +3,18 @@
     <% chats.each_with_index do |chat| %>
       <% if params[:id] && chat.id == params[:id].to_i %>
         <div class="list-group-item list-group-item-action flex-column align-items-start mb-2 bg-primary">
-          <%= link_to chat_path(chat) do %>
-            <div class="d-flex w-100 justify-content-between">
+          <div class="d-flex w-100 justify-content-between">
+            <%= link_to chat_path(chat) do %>
               <h5 class="mb-1 text-white"><%= chat.title %></h5>
-              <small>3 days ago</small>
-            </div>
-          <% end %>
+            <% end %>
+            <small>
+              <%= link_to chat_path(chat),
+                  data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+                  class: "text-danger" do %>
+                <i class="fa-solid fa-trash"></i>
+              <% end %>
+            </small>
+          </div>
           <ul>
           <% chat.products.each do |product| %>
             <li><%= link_to product.name, product_path(product), class: "text-light" %></li>
@@ -17,12 +23,18 @@
         </div>
       <% else %>
         <div class="list-group-item list-group-item-action flex-column align-items-start mb-2">
-          <%= link_to chat_path(chat) do %>
-            <div class="d-flex w-100 justify-content-between">
+          <div class="d-flex w-100 justify-content-between">
+            <%= link_to chat_path(chat) do %>
               <h5 class="mb-1 text-dark"><%= chat.title %></h5>
-              <small>3 days ago</small>
-            </div>
-          <% end %>
+            <% end %>
+            <small>
+              <%= link_to chat_path(chat),
+                  data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+                  class: "text-danger" do %>
+                <i class="fa-solid fa-trash"></i>
+              <% end %>
+            </small>
+          </div>
           <ul>
           <% chat.products.each do |product| %>
             <li><%= link_to product.name, product_path(product), class: "text-secondary" %></li>

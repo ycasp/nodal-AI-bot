@@ -11,8 +11,9 @@ class MessagesController < ApplicationController
     @message.role = "user"
 
     if @message.save
-      ruby_llm_chat = RubyLLM.chat
-      response = ruby_llm_chat.with_instructions(instructions).ask(@message.content)
+      @ruby_llm_chat = RubyLLM.chat
+      build_conversation_history
+      response = @ruby_llm_chat.with_instructions(instructions).ask(@message.content)
       Message.create(role: "assistant", content: response.content, chat: @chat_current)
 
       redirect_to chat_path(@chat_current)
@@ -40,5 +41,11 @@ class MessagesController < ApplicationController
 
   def instructions
     [SYSTEM_PROMPT, chat_product_context].compact.join("\n\n")
+  end
+
+  def build_conversation_history
+    @chat_current.messages.each do |message|
+      @ruby_llm_chat.add_message(message)
+    end
   end
 end
