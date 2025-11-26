@@ -1,27 +1,35 @@
-<% if @chats.any? %>
+<% if chats.any? %>
   <div class="list-group">
-    <% @chats.each_with_index do |chat, idx| %>
-      <div class="list-group-item list-group-item-action <%= 'active' if idx == 0 %>">
-        <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1">
-            <%= link_to chat.title, chat_path(chat), class: "text-decoration-none" %>
-          </h5>
-          <small class="text-muted">3 days ago</small>
-        </div>
-        <p class="mb-1 text-secondary">
-
-        </p>
-        <ul class="list-unstyled">
-          <% chat.products.each do |product| %>
-            <li>
-              <small class="text-muted">
-                <%= link_to product.name, product_path(product), class: "text-decoration-none" %>
-              </small>
-            </li>
+    <% chats.each_with_index do |chat| %>
+      <% if params[:id] && chat.id == params[:id].to_i %>
+        <div class="list-group-item list-group-item-action flex-column align-items-start mb-2 bg-primary">
+          <%= link_to chat_path(chat) do %>
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1 text-white"><%= chat.title %></h5>
+              <small>3 days ago</small>
+            </div>
           <% end %>
-        </ul>
-        <small class="text-muted"></small>
-      </div>
+          <ul>
+          <% chat.products.each do |product| %>
+            <li><%= link_to product.name, product_path(product), class: "text-light" %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% else %>
+        <div class="list-group-item list-group-item-action flex-column align-items-start mb-2">
+          <%= link_to chat_path(chat) do %>
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1 text-dark"><%= chat.title %></h5>
+              <small>3 days ago</small>
+            </div>
+          <% end %>
+          <ul>
+          <% chat.products.each do |product| %>
+            <li><%= link_to product.name, product_path(product), class: "text-secondary" %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
     <% end %>
   </div>
 <% else %>
