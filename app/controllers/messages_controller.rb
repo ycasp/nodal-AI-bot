@@ -15,6 +15,7 @@ class MessagesController < ApplicationController
       build_conversation_history
       response = @ruby_llm_chat.with_instructions(instructions).ask(@message.content)
       Message.create(role: "assistant", content: response.content, chat: @chat_current)
+      @message.chat.generate_title_from_first_message # NEW
 
       redirect_to chat_path(@chat_current)
     else
