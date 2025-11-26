@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   }
   resources :products, only: [:index, :show]
 
-  resources :chats, only: [:index, :create]
+  resources :chats, only: [:index, :create, :show] do
+    resources :messages, only: [:create]
+  end
 
 end
