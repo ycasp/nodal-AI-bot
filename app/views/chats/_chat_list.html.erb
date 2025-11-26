@@ -6,7 +6,11 @@
           <h5 class="mb-1">
             <%= link_to chat.title, chat_path(chat), class: "text-decoration-none" %>
           </h5>
-          <small class="text-muted">3 days ago</small>
+          <small class="text-muted"><%= link_to chat_path(chat),
+            data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+            class: "delete-icon" do %>
+          <i class="fa-solid fa-trash"></i>
+      <% end %></small>
         </div>
         <p class="mb-1 text-secondary">
 
@@ -22,6 +26,7 @@
         </ul>
         <small class="text-muted"></small>
       </div>
+
     <% end %>
   </div>
 <% else %>
