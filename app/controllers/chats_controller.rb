@@ -1,10 +1,20 @@
 class ChatsController < ApplicationController
 
   def index
-    @chats = Chat.all
+    @chats = current_user.chats.all
     @chat = Chat.new(title: "Untitled")
     @products = Product.all
-    # @chat_prod_relation = ChatProduct.new
+  end
+
+  def show
+    # for the side bar
+    @chats = current_user.chats.all
+    @chat_new = Chat.new(title: "Untitled")
+    @products = Product.all
+
+    # for the chat window
+    @chat_current = current_user.chats.find(params[:id])
+    @message = Message.new
   end
 
   def create
