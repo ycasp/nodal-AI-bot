@@ -1,7 +1,7 @@
 <% if @chats.any? %>
   <div class="list-group">
     <% @chats.each_with_index do |chat, idx| %>
-      <div class="list-group-item list-group-item-action <%= 'active' if idx == 0 %>">
+      <div class="list-group-item list-group-item-action ">
         <div class="d-flex w-100 justify-content-between">
           <h5 class="mb-1">
             <%= link_to chat.title, chat_path(chat), class: "text-decoration-none" %>
