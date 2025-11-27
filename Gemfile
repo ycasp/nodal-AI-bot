@@ -90,3 +90,6 @@ gem "kramdown-parser-gfm"
 
 # gem for multi-modal processing
 gem "image_processing", "~> 1.2"
+
+# open uri
+gem 'open-uri'
