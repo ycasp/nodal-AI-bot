@@ -69,8 +69,16 @@ class MessagesController < ApplicationController
       send_question(model: PDF_MODEL, with: { pdf: file.url })
     elsif file.image?
       send_question(model: "claude-sonnet-4", with: { image: @message.file.url })
+    elsif file.audio?
+      temp_file = Tempfile.new(["audio", File.extname(@message.file.filename.to_s)])
+
+      URI.open(@message.file.url) do |remote_file|
+        IO.copy_stream(remote_file, temp_file)
+      end
+
+    send_question(model: "gpt-4o-audio-preview", with: { audio: temp_file.path })
+    temp_file.unlink
     end
-  end
 
   def send_question(model: "gpt-4.1-nano", with: {})
     @ruby_llm_chat = RubyLLM.chat(model: model)
