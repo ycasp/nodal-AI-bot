@@ -76,9 +76,10 @@ class MessagesController < ApplicationController
         IO.copy_stream(remote_file, temp_file)
       end
 
-    send_question(model: "gpt-4o-audio-preview", with: { audio: temp_file.path })
-    temp_file.unlink
+      send_question(model: "gpt-4o-audio-preview", with: { audio: temp_file.path })
+      temp_file.unlink
     end
+  end
 
   def send_question(model: "gpt-4.1-nano", with: {})
     @ruby_llm_chat = RubyLLM.chat(model: model)
