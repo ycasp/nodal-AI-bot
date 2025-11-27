@@ -89,5 +89,4 @@ gem "rouge"
 gem "kramdown-parser-gfm"
 
 # gem for multi-modal processing
-gem "cloudinary"
 gem "image_processing", "~> 1.2"
