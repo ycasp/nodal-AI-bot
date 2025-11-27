@@ -15,9 +15,17 @@ class MessagesController < ApplicationController
     if @message.save
       ask_message_to_llm
       redirect_to chat_path(@chat_current)
+      respond_to do |format|
+        format.turbo_stream # renders `app/views/messages/create.turbo_stream.erb`
+        format.html { redirect_to chat_path(@chat_current) }
+      end
     else
       set_chat_sidebar_attributes
       render "chats/show", status: :unprocessable_entity
+      respond_to do |format|
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("new_message", partial: "messages/form", locals: { chat: @chat_current, message: @message }) }
+        format.html { render "chats/show", status: :unprocessable_entity }
+      end
     end
   end
 
