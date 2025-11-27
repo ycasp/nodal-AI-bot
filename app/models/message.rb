@@ -27,5 +27,6 @@ class Message < ApplicationRecord
   def file_size_limit
     if file.attached? && file.byte_size > MAX_FILE_SIZE_MB.megabytes
       errors.add(:file, "size must be less than #{MAX_FILE_SIZE_MB}MB")
+    end
   end
 end
