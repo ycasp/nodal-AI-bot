@@ -5,7 +5,7 @@ class MessagesController < ApplicationController
                   advice in looking for products to match my needs.\n\n
                   Assist me by giving me the products you find useful to my case.\n\n
                   Answer in a format of a list with the product details in markdown format."
-  PDF_MODEL = "gpt-4.1-nano"
+  PDF_MODEL = "claude-sonnet-4"
 
   def create
     @chat_current = current_user.chats.find(params[:chat_id])
@@ -66,9 +66,9 @@ class MessagesController < ApplicationController
 
   def process_file(file)
     if file.content_type == "application/pdf"
-      send_question(model: PDF_MODEL, with: { pdf: @message.file.url })
+      send_question(model: PDF_MODEL, with: { pdf: file.url })
     elsif file.image?
-      send_question(model: "gpt-4o", with: { image: @message.file.url })
+      send_question(model: "claude-sonnet-4", with: { image: @message.file.url })
     end
   end
 
