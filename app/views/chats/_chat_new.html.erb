@@ -6,22 +6,36 @@
       <div class="form-check tag-item" >
         <input type="checkbox" id="select_all_products"
                class="form-check-input tag-selector" data-product-selector-target="all"
-               data-action="click->product-selector#select">
+               data-action="click->product-selector#select_all">
         <label for="select_all_products" class="form-check-label">All</label>
       </div>
-      <%= form.input :product_ids,
-                    as: :check_boxes,
-                    collection: products,
-                    label_method: :name,
-                    value_method: :id,
-                    include_hidden: false,
-                    input_html: { class: "tag-selector",
-                                  data: {
-                                    product_selector_target: "box"
-                                  }
-                                },
-                    item_wrapper_class: "form-check tag-item",
-                    label: '' %>
+
+      <% (Product.select(:category).distinct.map { _1.category }).each do |cat|  %>
+        <div class="form-check tag-item" >
+          <input type="checkbox" id="<%= cat %>"
+                class="form-check-input tag-selector" data-product-selector-target="categoryBox"
+                data-action="click->product-selector#select_cat">
+          <label for="<%= cat %>"class="form-check-label"><%= cat %></label>
+        </div>
+      <% end %>
+      <fieldset class = "mb-3 check_boxes optional chat_product_ids">
+      <% products.each do |product| %>
+        <div class="form-check tag-item">
+          <input class="form-check-input check_boxes optional tag-selector"
+                 data-product-selector-target="box"
+                 data-category="<%= product.category %>"
+                 data-action="click->product-selector#check_all_selected"
+                 type="checkbox"
+                 value="<%= product.id %>"
+                 name="chat[product_ids][]"
+                 id="chat_product_ids_<%= product.id %>"
+                 >
+          <label class="form-check-label collection_check_boxes" for="chat_product_ids_<%= product.id %>">
+            <%= product.name %>
+          </label>
+        </div>
+      <% end %>
+      </fieldset>
     </div>
   </div>
   <%= form.submit "New Chat", class: "mt-2 btn btn-primary w-100 rounded-3 mb-3" %>
