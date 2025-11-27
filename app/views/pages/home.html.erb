@@ -1,12 +1,12 @@
 <div class="home-page-container">
   <header class="home-page-header">
     <h1>Welcome to our shop</h1><br>
-    <p>Log in to get started!</p>
-    <p class="fs-8 fst-italic">If you don't have log in credentials, please <%= link_to "Sign up", new_registration_path(@resource_name) %></p>
   </header>
   <main>
     <% unless user_signed_in? %>
       <section class="signup">
+        <p class="text-center" style ="color: #555">Log in to get started!</p>
+        <p class="text-center pb-3 fs-8 fst-italic" style ="color: #555">If you don't have log in credentials, please <%= link_to "sign up", new_registration_path(@resource_name) %></p>
         <h2>Log in</h2>
         <%= render "devise/sessions/home", resource: @resource, resource_name: @resource_name, devise_mapping: @devise_mapping %>
       </section>

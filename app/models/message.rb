@@ -3,6 +3,7 @@ class Message < ApplicationRecord
   before_validation :strip_content
 
   validates :content, presence: true
+  has_one_attached :file
 
   MAX_USER_MESSAGES = 10
 
