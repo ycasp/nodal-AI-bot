@@ -1,9 +1,12 @@
 <%= simple_form_for(chat) do |form| %>
   <div class="form-group">
     <label>Select Products</label>
-    <div class="border rounded p-2" style="max-height: 200px; overflow-y: auto;">
-      <div class="form-check">
-        <input type="checkbox" id="select_all_products" class="form-check-input">
+    <div class="" style="max-height: 200px; overflow-y: auto;"
+    data-controller="product-selector">
+      <div class="form-check tag-item" >
+        <input type="checkbox" id="select_all_products"
+               class="form-check-input tag-selector" data-product-selector-target="all"
+               data-action="click->product-selector#select">
         <label for="select_all_products" class="form-check-label">All</label>
       </div>
       <%= form.input :product_ids,
@@ -12,7 +15,12 @@
                     label_method: :name,
                     value_method: :id,
                     include_hidden: false,
-                    item_wrapper_class: "form-check",
+                    input_html: { class: "tag-selector",
+                                  data: {
+                                    product_selector_target: "box"
+                                  }
+                                },
+                    item_wrapper_class: "form-check tag-item",
                     label: '' %>
     </div>
   </div>
