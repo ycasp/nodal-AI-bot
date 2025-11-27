@@ -10,41 +10,13 @@
 
       <!-- Messages -->
       <div class="flex-grow-1 overflow-auto p-3 d-flex flex-column gap-3" id="messages">
-
-        <% @chat_current.messages.each do |message| %>
-          <% outgoing = message.role == "user" %>
-
-          <div class="d-flex w-100 <%= outgoing ? 'justify-content-end' : 'justify-content-start' %>">
-            <div class="<%= outgoing ? 'bg-primary text-white' : 'text-secondary border border-secondary-subtle' %>
-                p-3 pb-0 rounded-3"
-              style="max-width: 60%;">
-              <%= raw render_markdown(message.content) %>
-            </div>
-          </div>
-
-        <% end %>
+        <%= render "messages/messages", messages: @chat_current.messages %>
       </div>
 
 
       <!-- Input -->
       <div id="new_message_container">
-        <%= simple_form_for [@chat_current, @message],
-            html: {
-              class: "d-flex align-items-center p-3",
-              id: "chatForm"
-            } do |f| %>
-
-          <%= f.input_field :content,
-              id: "userInput",
-              class: "form-control me-3 rounded-3 bg-light",
-              placeholder: "Type your message...",
-              autocomplete: "off",
-              required: true %>
-
-          <%= f.button :submit, "Aks Nodaldo",
-              class: "btn btn-primary text-white px-4 rounded-3" %>
-
-        <% end %>
+        <%= render "messages/form", chat_current: @chat_current, message: @message %>
       </div>
     </div>
   </div>
