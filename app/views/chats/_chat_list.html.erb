@@ -1,47 +1,32 @@
 <% if chats.any? %>
   <div class="list-group">
     <% chats.each_with_index do |chat| %>
-      <% if params[:id] && chat.id == params[:id].to_i %>
-        <div class="list-group-item list-group-item-action flex-column align-items-start mb-2 bg-primary">
-          <div class="d-flex w-100 justify-content-between">
-            <%= link_to chat_path(chat) do %>
-              <h5 class="mb-1 text-white"><%= chat.title %></h5>
-            <% end %>
-            <small>
-              <%= link_to chat_path(chat),
-                  data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
-                  class: "text-danger" do %>
-                <i class="fa-solid fa-trash"></i>
-              <% end %>
-            </small>
-          </div>
-          <ul>
-          <% chat.products.each do |product| %>
-            <li><%= link_to product.name, product_path(product), class: "text-light" %></li>
+      <div class="list-group-item list-group-item-action flex-column align-items-start mb-2
+                  <%= ( params[:id] && chat.id == params[:id].to_i ) ? 'bg-primary' : '' %>">
+        <div class="d-flex w-100 justify-content-between">
+          <%= link_to chat_path(chat) do %>
+            <h5 class="<%= class_names(
+              'mb-1',
+              'text-white': ( params[:id] && chat.id == params[:id].to_i ),
+              'text-dark': !( params[:id] && chat.id == params[:id].to_i )
+              ) %>" >
+              <%= chat.title %>
+            </h5>
           <% end %>
-          </ul>
-        </div>
-      <% else %>
-        <div class="list-group-item list-group-item-action flex-column align-items-start mb-2">
-          <div class="d-flex w-100 justify-content-between">
-            <%= link_to chat_path(chat) do %>
-              <h5 class="mb-1 text-dark"><%= chat.title %></h5>
+          <small>
+            <%= link_to chat_path(chat),
+                data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+                class: "text-danger" do %>
+              <i class="fa-solid fa-trash"></i>
             <% end %>
-            <small>
-              <%= link_to chat_path(chat),
-                  data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
-                  class: "text-danger" do %>
-                <i class="fa-solid fa-trash"></i>
-              <% end %>
-            </small>
-          </div>
-          <ul>
-          <% chat.products.each do |product| %>
-            <li><%= link_to product.name, product_path(product), class: "text-secondary" %></li>
-          <% end %>
-          </ul>
+          </small>
         </div>
-      <% end %>
+        <ul>
+        <% chat.products.each do |product| %>
+          <li><%= link_to product.name, product_path(product), class: (( params[:id] && chat.id == params[:id].to_i ) ? "text-light" : "text-secondary") %></li>
+        <% end %>
+        </ul>
+      </div>
     <% end %>
   </div>
 <% else %>
