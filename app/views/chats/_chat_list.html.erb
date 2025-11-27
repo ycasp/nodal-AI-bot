@@ -9,7 +9,7 @@
               'mb-1',
               'text-white': ( params[:id] && chat.id == params[:id].to_i ),
               'text-dark': !( params[:id] && chat.id == params[:id].to_i )
-              ) %>" >
+              ) %>" id="chat_title">
               <%= chat.title %>
             </h5>
           <% end %>

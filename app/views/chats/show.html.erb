@@ -1,84 +1,51 @@
 <%= render "shared/product_chat_header", page: "chat" %>
 
-<div class="container-fluid d-flex vh-100">
-
-
-  <%= render "chats/chat_sidebar", chat: @chat_new, products: @products, chats: @chats %>
-
-  <div class="flex-grow-1 p-3 d-flex flex-column">
-    <% @chat_current.messages.each do |message| %>
-      <% if message.role == "user" %>
-        <div class="d-flex justify-content-end mb-2">
-          <div class="bg-white px-3 pb-0 pt-3 rounded-pill">
-            <%= raw(render_markdown(message.content)) %>
-          </div>
-        </div>
-      <% elsif message.role == "assistant" %>
-        <div class="d-flex justify-content-start mb-5">
-          <div class="px-3 pb-0 pt-3">
-            <%= raw(render_markdown(message.content)) %>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
-
-
-    <%= simple_form_for [@chat_current, @message] do |f| %>
-      <%= f.input :content, label: "Ask a question", required: true, placeholder: "How should I get started with the challenge?" %>
-      <%= f.button :submit, 'Ask LLM', class: 'btn btn-primary' %>
-    <% end %>
-  </div>
-
-</div>
-
-<div class="container-fluid h-100 d-flex justify-content-center align-items-center">
-  <div class="row chat-container shadow-lg rounded-4 overflow-hidden"
-       style="width:760px; height:540px;">
+<div class="container-fluid vh-100 d-flex">
+  <div class="row w-100">
 
     <%= render "chats/chat_sidebar", chat: @chat_new, products: @products, chats: @chats %>
 
     <!-- Chatbox -->
-    <div class="col d-flex flex-column bg-light px-3">
+    <div class="col col-lg-9 d-flex flex-column px-3 h-100">
 
       <!-- Messages -->
-      <div class="messages flex-grow-1 overflow-auto py-4 d-flex flex-column gap-3"
-           id="messages">
+      <div class="flex-grow-1 overflow-auto p-3 d-flex flex-column gap-3" id="messages">
 
         <% @chat_current.messages.each do |message| %>
-          <% alignment = message.role == "user" ? "align-self-end" : "align-self-start" %>
-          <% bubble_class =
-                message.role == "user" ?
-                "bg-info text-white" :
-                "bg-dark text-white" %>
+          <% outgoing = message.role == "user" %>
 
-          <div class="message <%= alignment %> <%= bubble_class %>
-                      p-3 rounded-pill"
-               style="max-width: 60%;">
-            <%= raw render_markdown(message.content) %>
+          <div class="d-flex w-100 <%= outgoing ? 'justify-content-end' : 'justify-content-start' %>">
+            <div class="<%= outgoing ? 'bg-primary text-white' : 'text-secondary border border-secondary-subtle' %>
+                p-3 pb-0 rounded-3"
+              style="max-width: 60%;">
+              <%= raw render_markdown(message.content) %>
+            </div>
           </div>
-        <% end %>
 
+        <% end %>
       </div>
 
+
       <!-- Input -->
-      <%= simple_form_for [@chat_current, @message],
-          html: {
-            class: "d-flex align-items-center bg-white p-3 rounded-top shadow-sm",
-            id: "chatForm"
-          } do |f| %>
+      <div id="new_message_container">
+        <%= simple_form_for [@chat_current, @message],
+            html: {
+              class: "d-flex align-items-center p-3",
+              id: "chatForm"
+            } do |f| %>
 
-        <%= f.input_field :content,
-            id: "userInput",
-            class: "form-control me-3 rounded-pill bg-light",
-            placeholder: "Type your message...",
-            autocomplete: "off",
-            required: true %>
+          <%= f.input_field :content,
+              id: "userInput",
+              class: "form-control me-3 rounded-3 bg-light",
+              placeholder: "Type your message...",
+              autocomplete: "off",
+              required: true %>
 
-        <%= f.button :submit, "Send",
-            class: "btn btn-info text-white px-4 rounded-pill" %>
+          <%= f.button :submit, "Aks Nodaldo",
+              class: "btn btn-primary text-white px-4 rounded-3" %>
 
-      <% end %>
-
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
