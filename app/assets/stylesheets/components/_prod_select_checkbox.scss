@@ -1,0 +1,60 @@
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 1rem;
+}
+
+
+.tag-selector {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+
+.tag-selector + label {
+  cursor: pointer;
+  display: inline-block;
+  padding: 0.35rem 0.9rem;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 500;
+
+  background: rgba(242, 240, 255, 0.7);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(106, 91, 255, 0.35);
+  color: #6A5BFF;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.12s ease;
+}
+
+
+.tag-selector + label:hover {
+  box-shadow: 0 4px 10px rgba(106, 91, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+
+.tag-selector:checked + label {
+  background: linear-gradient(135deg, #6A5BFF, #5849F9);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(106, 91, 255, 0.35);
+}
+
+/* Keyboard focus */
+.tag-selector:focus-visible + label {
+  outline: 2px solid #6A5BFF;
+  outline-offset: 3px;
+}
