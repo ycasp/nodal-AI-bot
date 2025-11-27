@@ -1,0 +1,17 @@
+<%= simple_form_for [chat_current, message],
+  html: {
+    class: "d-flex align-items-center p-3",
+    id: "chatForm"
+  } do |f| %>
+
+  <%= f.input_field :content,
+      id: "userInput",
+      class: "form-control me-3 rounded-3 bg-light",
+      placeholder: "Type your message...",
+      autocomplete: "off",
+      required: true %>
+
+  <%= f.button :submit, "Aks Nodaldo",
+      class: "btn btn-primary text-white px-4 rounded-3" %>
+
+<% end %>

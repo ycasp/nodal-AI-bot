@@ -1,0 +1,12 @@
+<% messages.each do |message| %>
+  <% outgoing = message.role == "user" %>
+
+  <div class="d-flex w-100 <%= outgoing ? 'justify-content-end' : 'justify-content-start' %>">
+    <div class="<%= outgoing ? 'bg-primary text-white' : 'text-secondary border border-secondary-subtle' %>
+        p-3 pb-0 rounded-3"
+      style="max-width: 60%;">
+      <%= raw render_markdown(message.content) %>
+    </div>
+  </div>
+
+<% end %>
