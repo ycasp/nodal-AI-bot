@@ -1,3 +1,5 @@
+require "open-uri"
+
 class MessagesController < ApplicationController
 
   SYSTEM_PROMPT = "You are a Sales Expert.\n\n
@@ -76,7 +78,7 @@ class MessagesController < ApplicationController
         IO.copy_stream(remote_file, temp_file)
       end
 
-      send_question(model: "gpt-4o-audio-preview", with: { audio: temp_file.path })
+      send_question(model: "gemini-2.0-flash", with: { audio: temp_file.path })
       temp_file.unlink
     end
   end
