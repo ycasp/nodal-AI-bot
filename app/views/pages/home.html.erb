@@ -1,7 +1,8 @@
 <div class="home-page-container">
   <header class="home-page-header">
-    <h1>Welcome to our shop</h1>
-    <p>Sign up to get started!</p>
+    <h1>Welcome to our shop</h1><br>
+    <p>Log in to get started!</p>
+    <p class="fs-8 fst-italic">If you don't have log in credentials, please <%= link_to "Sign up", new_registration_path(@resource_name) %></p>
   </header>
   <main>
     <% unless user_signed_in? %>

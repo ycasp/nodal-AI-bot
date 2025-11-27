@@ -1,28 +1,43 @@
-<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
-  <div class="card shadow-sm p-4" style="width: 100%; max-width: 400px;">
-    <h2 class="text-center mb-4">Sign up</h2>
+<div class="home-page-container">
+  <div class="home-page-header">
+    <h1>Welcome to our shop</h1><br>
+    <p>Sign up to get started! </p>
+    <p class="fs-8 fst-italic">If you already have credentials, please <%= link_to "log in", root_path(resource_name) %></p>
+  </div>
+
+  <div class="signup">
+    <h2>Sign up</h2>
+
     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= f.error_notification %>
+
       <div class="form-inputs">
         <%= f.input :email,
                     required: true,
                     autofocus: true,
-                    input_html: { autocomplete: "email", class: "form-control", placeholder: "Enter your email" },
-                    label_html: { class: "form-label" } %>
+                    label_html: { class: "visually-hidden" },
+                    placeholder: "Email address",
+                    input_html: { autocomplete: "email" } %>
+
         <%= f.input :password,
                     required: true,
+                    label_html: { class: "visually-hidden" },
+                    placeholder: "Password",
                     hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                    input_html: { autocomplete: "new-password", class: "form-control", placeholder: "Create a password" },
-                    label_html: { class: "form-label" } %>
+                    input_html: { autocomplete: "new-password" } %>
+
         <%= f.input :password_confirmation,
                     required: true,
-                    input_html: { autocomplete: "new-password", class: "form-control", placeholder: "Confirm your password" },
-                    label_html: { class: "form-label" } %>
+                    label_html: { class: "visually-hidden" },
+                    placeholder: "Password confirmation",
+                    input_html: { autocomplete: "new-password" } %>
       </div>
+
       <div class="form-actions mt-3">
-        <%= f.button :submit, "Sign up", class: "btn btn-primary w-100" %>
+        <%= f.button :submit, "Sign up", class: "btn-primary fw-bold w-100" %>
       </div>
     <% end %>
+
     <div class="text-center mt-3">
       <%= render "devise/shared/links" %>
     </div>
