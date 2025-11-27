@@ -8,7 +8,7 @@ class Users::SessionsController < Devise::SessionsController
     if resource
       set_flash_message!(:notice, :signed_in)
       sign_in(resource_name, resource)
-      redirect_to root_path
+      redirect_to products_path
     else
       flash[:alert] = "Wrong login credidentials!"
       if homepage_login
