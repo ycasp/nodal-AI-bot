@@ -1,75 +1,258 @@
-<!-- IMAGE -->
-<div class="col-12 col-md-5 text-center">
-  <%= cl_image_tag product.photo.key, class: "img-fluid w-100 h-100 object-fit-cover rounded-3" %>
+<%# Decide an icon based on category (FontAwesome) %>
+<%
+  category_icon_class =
+    case product.category
+    when "Fruits"               then "fa-apple-whole"
+    when "Vegetables"           then "fa-carrot"
+    when "Meat"                 then "fa-drumstick-bite"
+    when "Fish"                 then "fa-fish"
+    when "Dairy", "Dairy & Eggs" then "fa-cheese"
+    when "Bakery"               then "fa-bread-slice"
+    when "Beverages"            then "fa-wine-bottle"
+    when "Frozen"               then "fa-snowflake"
+    else "fa-tag"
+    end
+
+  perishable_categories = %w[Fruits Vegetables Meat Fish Dairy Frozen Bakery Dairy & Eggs]
+%>
+
+<!-- IMAGE COLUMN -->
+<div class="col-12 col-md-5 mb-3 mb-md-0">
+  <div class="product-main-image-wrapper position-relative shadow-sm rounded-4 bg-white">
+
+    <%# MAIN IMAGE (click to zoom) %>
+    <% if product.photo.attached? %>
+      <%= cl_image_tag product.photo.key,
+            class: "product-main-image img-fluid",
+            alt: product.name,
+            data: {
+              bs_toggle: "modal",
+              bs_target: "#productImageModal-#{product.id}"
+            } %>
+    <% else %>
+      <%# fallback if you keep image_url on the model %>
+      <%= image_tag product.image_url,
+            class: "product-main-image img-fluid",
+            alt: product.name,
+            data: {
+              bs_toggle: "modal",
+              bs_target: "#productImageModal-#{product.id}"
+            } if product.respond_to?(:image_url) && product.image_url.present? %>
+    <% end %>
+
+    <%# CATEGORY BADGE OVERLAY %>
+    <% if product.category.present? %>
+      <span class="badge bg-dark text-light position-absolute top-0 start-0 m-3 rounded-pill px-3 py-2">
+        <i class="fa-solid fa-tag me-1"></i>
+        <%= product.category %>
+      </span>
+    <% end %>
+
+    <%# "CLICK TO ZOOM" OVERLAY (bottom-right) %>
+    <span class="position-absolute bottom-0 end-0 m-3 small text-white bg-dark bg-opacity-75 px-3 py-1 rounded-pill d-none d-md-inline-flex align-items-center">
+      <i class="fa-solid fa-magnifying-glass-plus me-1"></i>
+      Zoom
+    </span>
+  </div>
+
+  <%# THUMBNAILS ROW (for now just repeats main image – later you can swap different angles) %>
+  <div class="d-flex gap-2 justify-content-center mt-3">
+    <button type="button"
+            class="btn p-0 border-0 bg-transparent product-thumb-btn"
+            data-bs-toggle="modal"
+            data-bs-target="#productImageModal-<%= product.id %>">
+      <% if product.photo.attached? %>
+        <%= cl_image_tag product.photo.key,
+              class: "product-thumb-img rounded-3",
+              alt: product.name %>
+      <% else %>
+        <%= image_tag product.image_url,
+              class: "product-thumb-img rounded-3",
+              alt: product.name if product.respond_to?(:image_url) && product.image_url.present? %>
+      <% end %>
+    </button>
+  </div>
+
+  <%# FULLSCREEN / LARGE ZOOM MODAL %>
+  <div class="modal fade" id="productImageModal-<%= product.id %>" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content border-0 rounded-4">
+        <div class="modal-header border-0">
+          <h5 class="modal-title">
+            <i class="fa-solid fa-image me-2"></i>
+            <%= product.name %>
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body pt-0">
+          <div class="product-modal-image-container rounded-4">
+            <% if product.photo.attached? %>
+              <%= cl_image_tag product.photo.key,
+                    class: "product-modal-image img-fluid mx-auto d-block",
+                    alt: product.name %>
+            <% else %>
+              <%= image_tag product.image_url,
+                    class: "product-modal-image img-fluid mx-auto d-block",
+                    alt: product.name if product.respond_to?(:image_url) && product.image_url.present? %>
+            <% end %>
+          </div>
+          <p class="small text-muted mt-2 mb-0 text-center">
+            <i class="fa-solid fa-magnifying-glass-plus me-1"></i>
+            Hover to zoom inside the image.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-<!-- INFO PANEL -->
+
+<!-- INFO PANEL COLUMN -->
 <div class="col-12 col-md-7">
-  <div class="bg-light rounded-3 p-4 p-md-5 h-100 d-flex flex-column justify-content-between">
+  <div class="bg-light rounded-4 p-4 p-md-5 h-100 shadow-sm d-flex flex-column justify-content-between">
 
     <div>
-      <!-- NAME + CATEGORY -->
+      <!-- NAME + CATEGORY INLINE BADGE -->
       <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
         <h1 class="h3 mb-0"><%= product.name %></h1>
         <% if product.category.present? %>
-          <span class="badge bg-secondary"><%= product.category %></span>
+          <span class="badge bg-secondary">
+            <i class="fa-solid <%= category_icon_class %> me-1"></i>
+            <%= product.category %>
+          </span>
         <% end %>
       </div>
 
       <!-- SHORT DESCRIPTION -->
-      <p class="mb-3 text-muted">
-        <%= product.description %>
-      </p>
+      <p class="mb-3 text-muted"><%= product.description %></p>
 
-      <!-- PRICES (B2B FOCUS) -->
-      <div class="mb-3">
+      <!-- PRICING -->
+      <div class="mb-4">
         <% if product.price_kg.present? %>
-          <div>
-            <span class="fs-2 fw-bold text-danger">
-              <%= number_to_currency(product.price_kg, unit: "€") %>
+          <div class="d-flex align-items-baseline gap-2">
+            <span class="fs-1 fw-bold text-primary">
+              <%= number_to_currency(product.price_unit, unit: "€") %>
             </span>
-            <span class="ms-1 fw-semibold">/ kg</span>
+            <span class="text-muted">
+              / <%= product.min_qty_type.presence || "unit" %>
+            </span>
           </div>
         <% end %>
 
         <% if product.price_unit.present? %>
+          <div class="mt-1 small">
+            <span class="fw-semibold">
+            <%= number_to_currency(product.price_kg, unit: "€") %>
+            </span>
+            <span class="fw-semibold text-muted">/ kg</span>
+          </div>
+        <% end %>
+
+
+
+        <% if product.unit_description.present? %>
           <div class="text-muted small">
-            <%= number_to_currency(product.price_unit, unit: "€") %> / unit
+            <i class="fa-solid fa-box-open me-1"></i>
+            <%= product.unit_description %>
           </div>
         <% end %>
       </div>
 
       <!-- B2B DETAILS ROW -->
-      <div class="row small text-muted gy-2">
+      <div class="row gy-3 small text-muted mb-3">
         <% if product.minimum_qty.present? %>
           <div class="col-6 col-sm-4">
-            <span class="d-block fw-semibold">Min. order</span>
-            <span><%= product.minimum_qty %></span>
+            <span class="d-block fw-semibold text-body">Min. order</span>
+            <span>
+              <i class="fa-solid fa-layer-group me-1"></i>
+              <%= product.minimum_qty %>
+              <%= product.min_qty_type %>
+            </span>
           </div>
         <% end %>
 
         <% if product.country_of_origin.present? %>
           <div class="col-6 col-sm-4">
-            <span class="d-block fw-semibold">Origin</span>
-            <span><%= product.country_of_origin %></span>
+            <span class="d-block fw-semibold text-body">Origin</span>
+            <span>
+              <i class="fa-solid fa-earth-europe me-1"></i>
+              <%= product.country_of_origin %>
+            </span>
           </div>
         <% end %>
 
         <% if product.days_until_expired.present? %>
           <div class="col-6 col-sm-4">
-            <span class="d-block fw-semibold">Shelf life</span>
-            <span><%= product.days_until_expired.to_i %> days</span>
+            <span class="d-block fw-semibold text-body">Shelf life</span>
+            <span>
+              <i class="fa-solid fa-clock-rotate-left me-1"></i>
+              <%= product.days_until_expired.to_i %> days
+            </span>
           </div>
         <% end %>
       </div>
+
+      <!-- STORAGE HINT -->
+      <% if product.days_until_expired.present? %>
+        <% storage_hint =
+          case product.category
+          when "Meat", "Fish", "Dairy", "Dairy & Eggs"
+            "Keep refrigerated and consume within #{product.days_until_expired.to_i} days of purchase."
+          when "Frozen"
+            "Keep frozen at -18°C. Do not refreeze once thawed."
+          when "Bakery"
+            "Store at room temperature in a cool, dry place. Best enjoyed fresh."
+          when "Fruits", "Vegetables"
+            "Store in a cool, dry place. Refrigerate to extend freshness if needed."
+          else
+            "Store in a cool, dry place away from direct sunlight."
+          end
+        %>
+        <p class="mt-2 mb-0 small text-muted">
+          <i class="fa-solid fa-circle-exclamation me-1"></i>
+          <%= storage_hint %>
+        </p>
+      <% end %>
     </div>
 
-    <!-- CTA -->
-    <div class="d-flex flex-wrap align-items-center gap-3 mt-4">
-      <%= button_to "Add to cart",
-                    "#",
-                    class: "btn btn-danger btn-lg px-4",
-                    method: :post %>
+    <!-- CTA + QUANTITY -->
+    <div class="mt-4 pt-3 border-top">
+      <div class="d-flex flex-wrap align-items-center gap-3">
+
+        <%# B2B style: quantity selector + CTA. Adjust URL/method to your cart. %>
+        <%= form_with url: "#", method: :post, local: true, class: "d-flex flex-wrap align-items-center gap-3" do %>
+          <div class="input-group" style="max-width: 200px;">
+            <span class="input-group-text bg-white border-end-0 small">
+              <i class="fa-solid fa-arrow-up-short-wide me-1"></i>
+              Qty
+            </span>
+            <input
+              type="number"
+              name="quantity"
+              class="form-control border-start-0 js-quantity-input"
+              value="<%= product.minimum_qty || 1 %>"
+              min="<%= product.minimum_qty || 1 %>"
+              step="<%= product.min_qty_type == 'kg' ? 0.1 : 1 %>"
+              data-price-unit="<%= product.price_unit || 0 %>"
+              data-total-price-target="#total-price-<%= product.id %>">
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg px-4">
+            <i class="fa-solid fa-cart-plus me-2"></i>
+            Add to cart
+          </button>
+        <% end %>
+
+        <% if product.price_unit.present? %>
+          <div class="small text-muted">
+            <i class="fa-solid fa-calculator me-1"></i>
+            Estimated total:
+            <span>€</span>
+            <span id="total-price-<%= product.id %>">0,00</span>
+          </div>
+        <% end %>
+      </div>
     </div>
 
   </div>
