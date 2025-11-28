@@ -1,12 +1,29 @@
 <% messages.each do |message| %>
-  <% outgoing = message.role == "user" %>
+  <% if message.role == "user" %>
+    <!-- USER MESSAGES (right side, pill bubble + file) -->
+    <div class="d-flex justify-content-end mb-2 w-100">
+      <div style="max-width: 60%;">
+        <div class="bg-primary text-white px-3 pb-1 pt-3 rounded-pill me-3">
+          <%= raw render_markdown(message.content) %>
+        </div>
 
-  <div class="d-flex w-100 <%= outgoing ? 'justify-content-end' : 'justify-content-start' %>">
-    <div class="<%= outgoing ? 'bg-primary text-white' : 'text-secondary border border-secondary-subtle' %>
-        p-3 pb-0 rounded-3"
-      style="max-width: 60%;">
-      <%= raw render_markdown(message.content) %>
+        <% if message.file.attached? %>
+          <div class="ps-3 pt-1">
+            <strong>File:</strong>
+            <%= link_to message.file.filename,
+                        rails_blob_path(message.file, disposition: "attachment") %>
+          </div>
+        <% end %>
+      </div>
     </div>
-  </div>
 
+  <% else %>
+    <!-- ASSISTANT / OTHER MESSAGES (left side, old style) -->
+    <div class="d-flex justify-content-start mb-2 w-100">
+      <div class="text-secondary border border-secondary-subtle p-3 pb-0 rounded-3"
+           style="max-width: 60%;">
+        <%= raw render_markdown(message.content) %>
+      </div>
+    </div>
+  <% end %>
 <% end %>

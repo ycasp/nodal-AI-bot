@@ -81,12 +81,15 @@ gem "pry-byebug"
 gem "cloudinary"
 
 # gem for using llm
-gem "ruby_llm", "~> 1.2.0"
-
-# debug
-gem 'pry-byebug'
+gem "ruby_llm"
 
 # gem for markdown rendering
 gem "kramdown"
 gem "rouge"
 gem "kramdown-parser-gfm"
+
+# gem for multi-modal processing
+gem "image_processing", "~> 1.2"
+
+# open uri
+gem 'open-uri'
