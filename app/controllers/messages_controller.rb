@@ -2,12 +2,24 @@ require "open-uri"
 
 class MessagesController < ApplicationController
 
-  SYSTEM_PROMPT = "You are a Sales Expert.\n\n
-                  I am a business owner with some needs that is looking for some
-                  advice in looking for products to match my needs.\n\n
-                  Assist me by giving me the products you find useful to my case.\n\n
-                  Answer in a format of a list with the product details in markdown format."
+  SYSTEM_PROMPT = <<~PROMPT
+    You are a Sales Expert.
+
+    I am a business owner and selected some products you have in your store.
+    But I have some questions about the product.
+
+    Assist me in answering my question and fullfilling the task.
+    Help me out with speficing the product details for my need.
+
+    If there is no matching product selected in the prompt,
+    please access the product table of our database / shop and help me out.
+
+    Answer in a format of a list with the product details in markdown format.
+  PROMPT
+
   PDF_MODEL = "claude-sonnet-4"
+  IMG_MODEL = "claude-sonnet-4"
+  AUDIO_MODEL = "gemini-2.0-flash"
 
   def create
     @chat_current = current_user.chats.find(params[:chat_id])
@@ -50,7 +62,7 @@ class MessagesController < ApplicationController
   def chat_product_context
     context = "Here are the products pre-selected I have interest on: \n\n"
     @chat_product.each do |product|
-      context += "#{product.to_promt} \n\n"
+      context += "#{product.to_prompt} \n\n"
     end
     return context
   end
@@ -68,7 +80,7 @@ class MessagesController < ApplicationController
     if file.content_type == "application/pdf"
       send_question(model: PDF_MODEL, with: { pdf: file.url })
     elsif file.image?
-      send_question(model: "claude-sonnet-4", with: { image: @message.file.url })
+      send_question(model: IMG_MODEL, with: { image: @message.file.url })
     elsif file.audio?
       temp_file = Tempfile.new(["audio", File.extname(@message.file.filename.to_s)])
 
@@ -76,7 +88,7 @@ class MessagesController < ApplicationController
         IO.copy_stream(remote_file, temp_file)
       end
 
-      send_question(model: "gemini-2.0-flash", with: { audio: temp_file.path })
+      send_question(model: AUDIO_MODEL, with: { audio: temp_file.path })
       temp_file.unlink
     end
   end
@@ -85,6 +97,8 @@ class MessagesController < ApplicationController
     @ruby_llm_chat = RubyLLM.chat(model: model)
     build_conversation_history
     @ruby_llm_chat.with_instructions(instructions)
+    proudcts_access = ProductsAccessTool.new
+    @ruby_llm_chat.with_tool(proudcts_access)
     @response = @ruby_llm_chat.ask(@message.content, with: with)
   end
 

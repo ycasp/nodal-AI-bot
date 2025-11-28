@@ -65,6 +65,9 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+  gem "httplog"
+  gem "pry-byebug"
+  gem "pry-rails"
 end
 
 group :test do
@@ -75,7 +78,6 @@ end
 
 # gem for authentification
 gem "devise"
-gem "pry-byebug"
 
 # gem for picuture saving - heroku is empheral
 gem "cloudinary"
