@@ -1,19 +1,33 @@
 <%= simple_form_for [chat_current, message],
-  html: {
-    class: "d-flex align-items-center p-3",
-    id: "chatForm"
-  } do |f| %>
+  html: { id: "chatForm", class: "p-2 border-top bg-white" } do |f| %>
 
-  <%= f.input_field :content,
-      id: "userInput",
-      class: "form-control me-3 rounded-3 bg-light",
-      placeholder: "Type your message...",
-      autocomplete: "off",
-      required: true %>
-  <%= f.input :file, as: :file, label: "Upload a file (PDF, image, or audio)" %>
-  <%= f.button :submit, "Aks Nodaldo",
-      class: "btn btn-primary text-white px-4 rounded-3" %>
+  <div class="position-relative">
 
+    <%= f.input_field :content,
+        class: "form-control rounded-pill shadow-sm pe-5",
+        placeholder: "Type your message...",
+        required: true %>
 
+    <div class="position-absolute top-50 end-0 translate-middle-y d-flex align-items-center me-2">
+
+      <label class="d-flex align-items-center justify-content-center rounded-circle bg-light shadow-sm"
+             style="width:32px; height:32px; cursor:pointer;">
+        <%= image_tag "clip.png",
+            alt: "Attach",
+            style: "width:18px; height:18px;" %>
+
+        <%= f.input :file,
+            as: :file,
+            label: false,
+            input_html: { style: "display:none;" } %>
+      </label>
+
+      <%= f.button :submit, "➤",
+          class: "btn btn-primary rounded-circle ms-2",
+          style: "width:32px; height:32px; padding:0;" %>
+
+    </div>
+
+  </div>
 
 <% end %>
