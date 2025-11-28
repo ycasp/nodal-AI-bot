@@ -1,6 +1,6 @@
 <div class="container my-5 pt-5">
 
-  <!-- Breadcrumb (optional) -->
+  <!-- Breadcrumb -->
   <nav aria-label="breadcrumb" class="mb-4">
     <ol class="breadcrumb mb-0">
       <li class="breadcrumb-item"><%= link_to "Home", root_path %></li>
@@ -9,20 +9,53 @@
     </ol>
   </nav>
 
-  <div class="row g-4 align-items-strech">
+  <!-- MAIN PRODUCT LAYOUT -->
+  <div class="row g-4 align-items-stretch">
     <%= render "product_show", product: @product %>
   </div>
 
   <!-- EXTRA DESCRIPTION AREA -->
   <div class="row mt-5">
-    <div class="col-12">
-      <h2 class="h5 mb-3">About this product</h2>
-      <p><%= @product.description %></p>
+    <div class="col-12 col-lg-8">
+      <h2 class="h5 mb-3">
+        <i class="fa-solid fa-circle-info me-2"></i>
+        About this product
+      </h2>
+      <p class="mb-0"><%= @product.description %></p>
     </div>
   </div>
 
   <!-- BACK LINK -->
   <div class="mt-4">
-    <%= link_to "← Back to products", products_path, class: "btn btn-link px-0" %>
+    <%= link_to products_path, class: "btn btn-link px-0" do %>
+      <i class="fa-solid fa-arrow-left-long me-1"></i>
+      Back to products
+    <% end %>
   </div>
 </div>
+
+<!-- INLINE JS: live total price based on quantity & price_unit -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const inputs = document.querySelectorAll(".js-quantity-input");
+
+    inputs.forEach(function (input) {
+      const priceUnit = parseFloat(input.dataset.priceUnit || "0");
+      const totalSelector = input.dataset.totalPriceTarget;
+      const totalSpan = document.querySelector(totalSelector);
+
+      if (!totalSpan || isNaN(priceUnit)) return;
+
+      const updateTotal = function () {
+        const qty = parseFloat(input.value || "0");
+        const total = (qty || 0) * priceUnit;
+        // Format as 0.00 and switch . to , for a Euro feel
+        totalSpan.textContent = total.toFixed(2).replace(".", ",");
+      };
+
+      input.addEventListener("input", updateTotal);
+      input.addEventListener("change", updateTotal);
+      updateTotal();
+    });
+  });
+</script>
