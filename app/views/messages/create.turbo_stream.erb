@@ -2,6 +2,10 @@
   <%= turbo_stream.update "chat_title", @chat_current.title %>
 <% end %>
 
+<% if @chat_current.title_previously_changed? %>
+  <%= turbo_stream.update "chat_header", @chat_current.title %>
+<% end %>
+
 <%= turbo_stream.append "messages" do %>
   <%= render "messages/messages", messages: @chat_current.messages.last(2) %>
 <% end %>

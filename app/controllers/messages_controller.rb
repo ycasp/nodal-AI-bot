@@ -93,7 +93,7 @@ class MessagesController < ApplicationController
     end
   end
 
-  def send_question(model: "gpt-4.1-nano", with: {})
+  def send_question(model: "gemini-2.0-flash", with: {})
     @ruby_llm_chat = RubyLLM.chat(model: model)
     build_conversation_history
     @ruby_llm_chat.with_instructions(instructions)
