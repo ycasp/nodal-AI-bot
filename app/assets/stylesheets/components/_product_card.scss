@@ -14,3 +14,69 @@
   object-fit: cover;
   object-position: center;
 }
+
+
+
+/////////////////////////// PRODUCT PAGE////////////
+
+
+
+/* Main card wrapper for product images */
+.product-main-image-wrapper {
+  padding: 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 260px;
+}
+
+/* The actual main image – same look for every product */
+.product-main-image {
+  max-height: 420px;           /* standard height for catalog */
+  width: auto;
+  object-fit: contain;         /* never crop – always fully visible */
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: zoom-in;
+}
+
+/* Slight zoom on hover on card */
+.product-main-image-wrapper:hover .product-main-image {
+  transform: scale(1.03);
+}
+
+/* Thumbnail images below main image */
+.product-thumb-img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  background: #f3f4f6;
+  padding: 4px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-thumb-btn:hover .product-thumb-img {
+  transform: translateY(-1px);
+  box-shadow: 0 0.25rem 0.75rem rgba(15, 23, 42, 0.15);
+}
+
+/* Modal: Amazon-like zoom on hover */
+.product-modal-image-container {
+  overflow: hidden;
+  background: #f8fafc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-height: 80vh;   /* never exceed viewport height */
+}
+
+.product-modal-image {
+  max-height: 80vh;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.35s ease;
+}
+
+.product-modal-image-container:hover .product-modal-image {
+  transform: scale(1.2);
+  cursor: zoom-in;
+}
