@@ -1,13 +1,66 @@
+
 .navbar-lewagon {
+  display: flex;
+  align-items: center;
   justify-content: space-between;
-  background: white;
+
+  background: transparent;
+  padding: 0.5rem 1.5rem;
+
+  border-bottom: none;
 }
+
+
+.navbar-lewagon .navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+
+.navbar-lewagon .navbar-brand img {
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+
+  padding: 6px;
+  border-radius: 12px;
+
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(4px);
+
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.navbar-lewagon .navbar-brand img:hover {
+  transform: scale(1.04);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+}
+
+
+.navbar-lewagon .nav-link {
+  color: #000;
+  font-weight: 500;
+  padding: 0.45rem 0.8rem;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+.navbar-lewagon .nav-link:hover {
+  background: rgba(0,0,0,0.08);
+}
+
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
 }
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
-}
 
+@media (max-width: 992px) {
+  .navbar-lewagon .navbar-brand img {
+    width: 46px;
+    height: 46px;
+    padding: 5px;
+    border-radius: 10px;
+  }
+}
