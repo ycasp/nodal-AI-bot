@@ -15,8 +15,7 @@
 
       <!-- File upload -->
       <label class="btn btn-light rounded-circle p-2 shadow-sm mb-0">
-        <i class="bi bi-paperclip"></i>
-        <%= f.input :file, as: :file, label: false,
+        <%= f.input :file, as: :file, label: "<i class='fa-solid fa-paperclip'></i>".html_safe,
             input_html: { style: "display:none;" } %>
       </label>
 
