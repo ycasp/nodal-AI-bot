@@ -18,18 +18,19 @@
 
 
 .navbar-lewagon .navbar-brand img {
-  width: 54px;
-  height: 54px;
+  width: 100px;
+  height: 60px;
   object-fit: contain;
 
   padding: 6px;
   border-radius: 12px;
 
-  background: rgba(255,255,255,0.75);
+  // background: rgba(255,255,255,0.75);
   backdrop-filter: blur(4px);
 
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  // box-shadow: 0 2px 6px rgba(0,0,0,0.08);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+  zoom: 150%;
 }
 
 .navbar-lewagon .navbar-brand img:hover {
@@ -55,6 +56,9 @@
   flex-grow: 0;
 }
 
+.navbar-lewagon .avatar {
+  margin-left: 1rem; /* adjust as needed */
+}
 
 @media (max-width: 992px) {
   .navbar-lewagon .navbar-brand img {
@@ -62,5 +66,6 @@
     height: 46px;
     padding: 5px;
     border-radius: 10px;
+
   }
 }
