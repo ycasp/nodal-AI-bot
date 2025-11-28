@@ -146,32 +146,6 @@ example_products = [
     "days_until_expired": 14,
     "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnDyg9G8txGuNdWvzJERP_fNeF0ChN8EBceA&s"
   },
-  { #We start here to fix the URL DOWN!!!!!!
-    "name": "Organic Apples",
-    "description": "Fresh, crisp red apples, ideal for snacking or baking.",
-    "category": "Fruits",
-    "minimum_qty": 1,
-    "min_qty_type": "pack",
-    "price_unit": 1.99,
-    "unit_description": "pack of 4 apples (≈0.5 kg)",
-    "price_kg": 3.98,
-    "country_of_origin": "United States",
-    "days_until_expired": 14,
-    "image_url": "https://example.com/image_placeholder.jpg"
-  },
-  {
-    "name": "Bananas",
-    "description": "Ripe yellow bananas, naturally sweet, perfect for breakfast.",
-    "category": "Fruits",
-    "minimum_qty": 0.5,
-    "min_qty_type": "kg",
-    "price_unit": 1.49,
-    "unit_description": "loose, sold per kg",
-    "price_kg": 1.49,
-    "country_of_origin": "Ecuador",
-    "days_until_expired": 7,
-    "image_url": "https://example.com/image_placeholder.jpg"
-  },
   {
     "name": "Navel Oranges",
     "description": "Juicy seedless navel oranges, great for juicing.",
@@ -183,7 +157,7 @@ example_products = [
     "price_kg": 2.39,
     "country_of_origin": "Spain",
     "days_until_expired": 10,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://m.media-amazon.com/images/I/71WJR4J0uUL.jpg"
   },
   {
     "name": "Strawberries",
@@ -196,7 +170,7 @@ example_products = [
     "price_kg": 8.22,
     "country_of_origin": "Portugal",
     "days_until_expired": 4,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://papayaexpress.com/cdn/shop/files/0003338320030_1500x.webp?v=1700154615"
   },
   {
     "name": "Blueberries",
@@ -209,7 +183,7 @@ example_products = [
     "price_kg": 14.95,
     "country_of_origin": "Poland",
     "days_until_expired": 7,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://bfasset.costco-static.com/U447IH35/as/gkbkg34jks75jtnvtkvwx/57554__1psd?auto=webp&format=jpg&width=350&height=350&fit=bounds&canvas=350,350"
   },
   {
     "name": "Grapes",
@@ -222,7 +196,7 @@ example_products = [
     "price_kg": 3.99,
     "country_of_origin": "Italy",
     "days_until_expired": 6,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://www.shutterstock.com/image-photo/box-american-seedless-green-grapes-260nw-1570765486.jpg"
   },
   {
     "name": "Avocados",
@@ -235,7 +209,7 @@ example_products = [
     "price_kg": 7.97,
     "country_of_origin": "Mexico",
     "days_until_expired": 5,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://media.gettyimages.com/id/559226989/photo/close-up-of-two-whole-avocados.jpg?s=612x612&w=0&k=20&c=Aset4WeCtC481I8il8EAQngLZRoiLL3a91rQjZLzU54="
   },
   {
     "name": "Cherry Tomatoes",
@@ -248,20 +222,7 @@ example_products = [
     "price_kg": 7.56,
     "country_of_origin": "Morocco",
     "days_until_expired": 7,
-    "image_url": "https://example.com/image_placeholder.jpg"
-  },
-  {
-    "name": "Broccoli",
-    "description": "Fresh green broccoli heads, rich in vitamins.",
-    "category": "Vegetables",
-    "minimum_qty": 0.3,
-    "min_qty_type": "kg",
-    "price_unit": 3.49,
-    "unit_description": "sold per kg",
-    "price_kg": 3.49,
-    "country_of_origin": "Spain",
-    "days_until_expired": 7,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://theproduceguyz.com/cdn/shop/files/grape_tomatoe_2025.png?v=1736796523"
   },
   {
     "name": "Carrots",
@@ -274,7 +235,7 @@ example_products = [
     "price_kg": 1.09,
     "country_of_origin": "Netherlands",
     "days_until_expired": 21,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://thumbs.dreamstime.com/b/young-carrots-package-table-vegetable-group-143689253.jpg"
   },
   {
     "name": "Red Onions",
@@ -287,7 +248,7 @@ example_products = [
     "price_kg": 1.39,
     "country_of_origin": "Spain",
     "days_until_expired": 30,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://m.media-amazon.com/images/I/81HAyJOUT4L.jpg"
   },
   {
     "name": "Potatoes",
@@ -300,7 +261,7 @@ example_products = [
     "price_kg": 1.25,
     "country_of_origin": "France",
     "days_until_expired": 30,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://images.heb.com/is/image/HEBGrocery/000475971-1?hei=360&wid=360"
   },
   {
     "name": "Mixed Salad Leaves",
@@ -313,7 +274,7 @@ example_products = [
     "price_kg": 11.93,
     "country_of_origin": "Portugal",
     "days_until_expired": 4,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://organicdeliverycompany.co.uk/cdn/shop/files/salad-mixed-pack-200g-459890_530x@2x.jpg?v=1730162700"
   },
   {
     "name": "Cucumber",
@@ -326,7 +287,7 @@ example_products = [
     "price_kg": 2.26,
     "country_of_origin": "Spain",
     "days_until_expired": 5,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://media.gettyimages.com/id/1665711648/photo/basket-of-fresh-picked-cucumbers-from-the-garden.jpg?s=612x612&w=0&k=20&c=QS5N06Qb6Uh1gqlhGRpYchtQXKTCRmkfKSWXNzkOrsQ="
   },
   {
     "name": "Whole Chicken",
@@ -339,7 +300,7 @@ example_products = [
     "price_kg": 4.29,
     "country_of_origin": "Portugal",
     "days_until_expired": 5,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://thumbs.dreamstime.com/b/fresh-raw-chicken-whole-stuffed-lemon-spices-cooking-wooden-board-top-view-62109794.jpg"
   },
   {
     "name": "Chicken Breast Fillets",
@@ -352,7 +313,7 @@ example_products = [
     "price_kg": 8.98,
     "country_of_origin": "Brazil",
     "days_until_expired": 5,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://m.media-amazon.com/images/I/413-ZcUD24L.jpg"
   },
   {
     "name": "Ground Beef 10% Fat",
@@ -365,7 +326,7 @@ example_products = [
     "price_kg": 9.98,
     "country_of_origin": "Ireland",
     "days_until_expired": 3,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://images.albertsons-media.com/is/image/ABS/970334359?$ng-ecom-pdp-mobile$&defaultImage=Not_Available"
   },
   {
     "name": "Pork Chops",
@@ -378,7 +339,7 @@ example_products = [
     "price_kg": 5.29,
     "country_of_origin": "Spain",
     "days_until_expired": 4,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://i5.walmartimages.com/seo/Butt-Steak-Bone-in-Family-Pack-Pork-3-1-5-1-lb-Fresh_548d290c-8cf7-4417-b420-ff43a600e51e.88dc11a6b97cd0f22a03b0158b53d431.jpeg?odnHeight=580&odnWidth=580&odnBg=FFFFFF"
   },
   {
     "name": "Smoked Bacon",
@@ -391,7 +352,7 @@ example_products = [
     "price_kg": 12.45,
     "country_of_origin": "Germany",
     "days_until_expired": 21,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://m.media-amazon.com/images/I/513AslcWP9L.jpg"
   },
   {
     "name": "Fresh Salmon Fillet",
@@ -404,7 +365,7 @@ example_products = [
     "price_kg": 16.99,
     "country_of_origin": "Norway",
     "days_until_expired": 3,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://media.gettyimages.com/id/1930253808/photo/vacuum-packed-salmon-fillet-slices-isolated-on-white.jpg?s=612x612&w=0&k=20&c=quZXDVM7rMOg-MxMOMNn8quP8N8Q5racZe4NVOB7CKk="
   },
   {
     "name": "Frozen Cod Loins",
@@ -417,7 +378,7 @@ example_products = [
     "price_kg": 10.82,
     "country_of_origin": "Iceland",
     "days_until_expired": 365,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://preferredmeatsinc.com/wp-content/uploads/2017/07/cod-loins-frozen-scaled.jpg"
   },
   {
     "name": "Canned Tuna in Olive Oil",
@@ -430,7 +391,7 @@ example_products = [
     "price_kg": 12.42,
     "country_of_origin": "Spain",
     "days_until_expired": 1095,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco,w_730/tk/photo/2025/05-2025/2025-05-taste-test-canned-tuna/2025-05-taste-test-canned-tuna-cento"
   },
   {
     "name": "Canned Chickpeas",
@@ -443,7 +404,7 @@ example_products = [
     "price_kg": 1.98,
     "country_of_origin": "Italy",
     "days_until_expired": 1095,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://m.media-amazon.com/images/I/81z7eIJ05ZL._SY879_.jpg"
   },
   {
     "name": "Tomato Passata",
@@ -456,7 +417,7 @@ example_products = [
     "price_kg": 1.99,
     "country_of_origin": "Italy",
     "days_until_expired": 365,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://ettopastificio.com/cdn/shop/products/conchigliete1lbbag.jpg?v=1736299008&width=1080"
   },
   {
     "name": "Spaghetti Pasta",
@@ -469,7 +430,7 @@ example_products = [
     "price_kg": 2.38,
     "country_of_origin": "Italy",
     "days_until_expired": 730,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://m.media-amazon.com/images/I/61LB+r1beKL._SX679_.jpg"
   },
   {
     "name": "Basmati Rice",
@@ -482,7 +443,7 @@ example_products = [
     "price_kg": 2.69,
     "country_of_origin": "India",
     "days_until_expired": 730,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://m.media-amazon.com/images/I/61eQb1sUyFL.jpg"
   },
   {
     "name": "Whole Wheat Penne",
@@ -495,7 +456,7 @@ example_products = [
     "price_kg": 2.78,
     "country_of_origin": "Italy",
     "days_until_expired": 730,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://m.media-amazon.com/images/I/815U9dG7tpL.jpg"
   },
   {
     "name": "All-Purpose Flour",
@@ -508,7 +469,7 @@ example_products = [
     "price_kg": 0.99,
     "country_of_origin": "France",
     "days_until_expired": 365,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://m.media-amazon.com/images/I/71cdAu7Ko4L.jpg"
   },
   {
     "name": "Granulated Sugar",
@@ -521,7 +482,7 @@ example_products = [
     "price_kg": 1.19,
     "country_of_origin": "France",
     "days_until_expired": 730,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://a1coffee.net/cdn/shop/products/Granulated_White_Sugar.jpg?v=1740561038&width=480"
   },
   {
     "name": "Brown Sugar",
@@ -534,7 +495,7 @@ example_products = [
     "price_kg": 2.98,
     "country_of_origin": "Germany",
     "days_until_expired": 365,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://i5.walmartimages.com/seo/Domino-Premium-Pure-Cane-Light-Brown-Sugar-2-lb-Zipper-Pak_81b88e8b-5d1b-4761-b8d8-fd0027099a30.3e96d2748feb0670bb970fdaa1f49afe.jpeg?odnHeight=580&odnWidth=580&odnBg=FFFFFF"
   },
   {
     "name": "Organic Oats",
@@ -547,7 +508,7 @@ example_products = [
     "price_kg": 2.19,
     "country_of_origin": "Finland",
     "days_until_expired": 365,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://m.media-amazon.com/images/S/assets.wholefoodsmarket.com/PIE/product/41f--ApsbaL._FMwebp__SR600,600_.jpg"
   },
   {
     "name": "Corn Flakes Cereal",
@@ -560,7 +521,7 @@ example_products = [
     "price_kg": 5.18,
     "country_of_origin": "Germany",
     "days_until_expired": 365,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://m.media-amazon.com/images/I/5162b9Os-tL.jpg"
   },
   {
     "name": "Greek Yogurt Natural",
@@ -573,7 +534,7 @@ example_products = [
     "price_kg": 3.98,
     "country_of_origin": "Greece",
     "days_until_expired": 21,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://i5.walmartimages.com/seo/Chobani-Non-Fat-Greek-Yogurt-Zero-Sugar-Vanilla-32-Oz-Tub_f60f55cd-d555-49b4-80db-43d0a00107ad.697904afb9189d9b3d20fb7cdfb27eb6.jpeg?odnHeight=320&odnWidth=320&odnBg=FFFFFF"
   },
   {
     "name": "Mozzarella Cheese",
@@ -586,7 +547,7 @@ example_products = [
     "price_kg": 7.92,
     "country_of_origin": "Italy",
     "days_until_expired": 14,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://i5.walmartimages.com/seo/Kraft-Mozzarella-Shredded-Cheese-16-oz-Bag_4449d53c-9662-456b-ac75-ba64b0928766.fe8a80118579d2a845356e3c0f843034.png?odnHeight=580&odnWidth=580&odnBg=FFFFFF"
   },
   {
     "name": "Cheddar Cheese Block",
@@ -599,7 +560,7 @@ example_products = [
     "price_kg": 12.76,
     "country_of_origin": "United Kingdom",
     "days_until_expired": 60,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://storage.googleapis.com/images-lnb-prd-8936dd0.lnb.prd.v8.commerce.mi9cloud.com/product-images/cell/00273009000009.png"
   },
   {
     "name": "Butter Unsalted",
@@ -612,7 +573,7 @@ example_products = [
     "price_kg": 9.16,
     "country_of_origin": "Ireland",
     "days_until_expired": 90,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://cdn.thewirecutter.com/wp-content/media/2024/10/butter-2048px-3623.jpg?auto=webp&quality=75&width=1024"
   },
   {
     "name": "Fresh Eggs",
@@ -625,7 +586,7 @@ example_products = [
     "price_kg": 3.99,
     "country_of_origin": "Portugal",
     "days_until_expired": 21,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://media.gettyimages.com/id/171206679/photo/egg-carton-isolated-clipping-path.jpg?s=612x612&w=0&k=20&c=NXiThdkBiG9WMptlc5SpwhxR3iriKn2gnJHztTRQsgU="
   },
   {
     "name": "White Sandwich Bread",
@@ -638,7 +599,7 @@ example_products = [
     "price_kg": 2.13,
     "country_of_origin": "Portugal",
     "days_until_expired": 5,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://m.media-amazon.com/images/I/81jmXcuPxSL.jpg"
   },
   {
     "name": "Whole Wheat Bread",
@@ -651,7 +612,7 @@ example_products = [
     "price_kg": 2.41,
     "country_of_origin": "Portugal",
     "days_until_expired": 5,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://m.media-amazon.com/images/I/51YVt8YUEtL.jpg"
   },
   {
     "name": "Croissants",
@@ -664,7 +625,7 @@ example_products = [
     "price_kg": 10.38,
     "country_of_origin": "France",
     "days_until_expired": 3,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://i5.walmartimages.com/seo/Marketside-All-Butter-Whole-Croissants-9-17-oz-4-Count_b29c87d7-df65-45cc-abb8-a0ef30dce215.916e35676cedc455e187ad61d0d021a5.jpeg?odnHeight=580&odnWidth=580&odnBg=FFFFFF"
   },
   {
     "name": "Orange Juice 100%",
@@ -677,7 +638,7 @@ example_products = [
     "price_kg": 2.49,
     "country_of_origin": "Spain",
     "days_until_expired": 14,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://i5.walmartimages.com/seo/Simply-Orange-Pulp-Free-Orange-Juice-46-fl-oz-Bottle_08c9f11e-2995-44a3-b165-8badf4d80777.089aa192c0d039b3f92e8712f0a89865.jpeg?odnHeight=580&odnWidth=580&odnBg=FFFFFF"
   },
   {
     "name": "Apple Juice",
@@ -690,7 +651,7 @@ example_products = [
     "price_kg": 1.79,
     "country_of_origin": "Germany",
     "days_until_expired": 120,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://static.vecteezy.com/system/resources/thumbnails/048/776/709/small/fresh-apple-juice-bottle-apple-cider-vinegar-apple-juice-healthy-apple-juice-transparent-background-png.png"
   },
   {
     "name": "Sparkling Water",
@@ -703,7 +664,7 @@ example_products = [
     "price_kg": 0.39,
     "country_of_origin": "Portugal",
     "days_until_expired": 365,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://m.media-amazon.com/images/I/819HJzGVugL.jpg"
   },
   {
     "name": "Cola Drink",
@@ -716,7 +677,7 @@ example_products = [
     "price_kg": 0.86,
     "country_of_origin": "Netherlands",
     "days_until_expired": 365,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://m.media-amazon.com/images/I/71wWKpuFjdL.jpg"
   },
   {
     "name": "Frozen Peas",
@@ -729,7 +690,7 @@ example_products = [
     "price_kg": 2.12,
     "country_of_origin": "Belgium",
     "days_until_expired": 730,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://tiimg.tistatic.com/fp/1/009/373/sharda-frozen-green-peas-953.jpg"
   },
   {
     "name": "Vanilla Ice Cream",
@@ -742,7 +703,7 @@ example_products = [
     "price_kg": 6.64,
     "country_of_origin": "Spain",
     "days_until_expired": 365,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://www.kroger.com/product/images/large/front/0001111050729"
   },
   {
     "name": "Potato Chips Salted",
@@ -755,7 +716,7 @@ example_products = [
     "price_kg": 8.6,
     "country_of_origin": "Spain",
     "days_until_expired": 120,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://image.migros.ch/d/mo-boxed/v-w-1000-h-1000/o-af-1-t.clr-fff/93521d9374e0a0bbc65eafd64e94bb0e2c4d2adb/zweifel-original-original-plain.jpg"
   },
   {
     "name": "Dark Chocolate 70%",
@@ -768,7 +729,7 @@ example_products = [
     "price_kg": 18.9,
     "country_of_origin": "Belgium",
     "days_until_expired": 365,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://m.media-amazon.com/images/I/81OcOmhUpbL.jpg"
   },
   {
     "name": "Olive Oil Extra Virgin",
@@ -781,7 +742,7 @@ example_products = [
     "price_kg": 10.13,
     "country_of_origin": "Portugal",
     "days_until_expired": 730,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://frankandsal.com/cdn/shop/products/oil1_1600x.png?v=1682096730"
   },
   {
     "name": "Blossom Honey",
@@ -794,13 +755,12 @@ example_products = [
     "price_kg": 8.98,
     "country_of_origin": "Hungary",
     "days_until_expired": 730,
-    "image_url": "https://example.com/image_placeholder.jpg"
+    "image_url": "https://beeswiki.com/wp-content/uploads/2021/10/Orange-Blossom-Honey.png"
   }
 ]
 
-
-
 example_products.each do |example_product|
+  puts example_product[:name]
   product = Product.new
   product.name = example_product[:name]
   product.description = example_product[:description]
