@@ -52,7 +52,7 @@ class MessagesController < ApplicationController
   def chat_product_context
     context = "Here are the products pre-selected I have interest on: \n\n"
     @chat_product.each do |product|
-      context += "#{product.to_promt} \n\n"
+      context += "#{product.to_prompt} \n\n"
     end
     return context
   end
