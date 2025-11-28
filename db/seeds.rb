@@ -11,147 +11,158 @@ require 'open-uri'
 
 User.destroy_all
 Product.destroy_all
+Chat.destroy_all
+Message.destroy_all
 puts "All products deleted: Procduct count = #{Product.count}"
 
-fruits_img = URI.parse("https://media.istockphoto.com/id/529664572/photo/fruit-background.jpg?s=612x612&w=0&k=20&c=K7V0rVCGj8tvluXDqxJgu0AdMKF8axP0A15P-8Ksh3I=").open
-veg_img = URI.parse("https://media.istockphoto.com/id/1203599923/photo/food-background-with-assortment-of-fresh-organic-vegetables.jpg?s=612x612&w=0&k=20&c=DZy1JMfUBkllwiq1Fm_LXtxA4DMDnExuF40jD8u9Z0Q=").open
-dairy_img = URI.parse("https://images.unsplash.com/photo-1550630997-aea8d3d982ed?q=80&w=1528&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D").open
-bake_img = URI.parse("https://plus.unsplash.com/premium_photo-1675788938970-e2716f23b1f9?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D").open
-meat_img = URI.parse("https://images.unsplash.com/photo-1603048297172-c92544798d5a?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D").open
-sea_img = URI.parse("https://images.unsplash.com/photo-1642741580389-87dd75d913f4?q=80&w=3072&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D").open
-freeze_img = URI.parse("https://images.unsplash.com/photo-1651383140368-9b3ee59c2981?q=80&w=1337&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D").open
-pantry_img = URI.parse("https://images.unsplash.com/photo-1651383140368-9b3ee59c2981?q=80&w=1337&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D").open
-bev_img = URI.parse("https://images.unsplash.com/photo-1613590759544-48ad7834d05f?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D").open
-snacks_img = URI.parse("https://images.unsplash.com/photo-1614735241165-6756e1df61ab?q=80&w=3732&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D").open
-CATEGORIES = {
-  "Fruit"      => { price_kg: 2.0..6.0,    shelf: 4..21, img: fruits_img },
-  "Vegetable"  => { price_kg: 1.5..5.0,    shelf: 5..21, img: veg_img },
-  "Dairy"      => { price_kg: 1.2..6.0,    shelf: 7..21, img: dairy_img },
-  "Bakery"     => { price_kg: 3.0..8.0,    shelf: 2..5, img: bake_img },
-  "Meat"       => { price_kg: 8.0..20.0,   shelf: 2..5, img: meat_img },
-  "Seafood"    => { price_kg: 10.0..30.0,  shelf: 2..4, img: sea_img },
-  "Frozen"     => { price_kg: 2.0..6.0,    shelf: 180..730, img: freeze_img },
-  "Pantry"     => { price_kg: 1.0..10.0,   shelf: 180..730, img: pantry_img },
-  "Beverage"   => { price_kg: 0.5..4.0,    shelf: 30..365, img: bev_img },
-  "Snacks"     => { price_kg: 5.0..20.0,   shelf: 90..365, img: snacks_img },
-}
-
-COUNTRIES = %w[
-  Switzerland Germany France Italy Spain
-  Netherlands Belgium Austria Poland Greece
-  USA Canada Mexico Brazil India China
-]
-
-BASE_PRODUCTS = [
-  ["Bananas",             "Fruit"],
-  ["Gala Apples",         "Fruit"],
-  ["Carrots",             "Vegetable"],
-  ["Broccoli",            "Vegetable"],
-  ["Whole Milk 1L",       "Dairy"],
-  ["Natural Yogurt 500g", "Dairy"],
-  ["White Bread Loaf",    "Bakery"],
-  ["Wholegrain Bread",    "Bakery"],
-  ["Chicken Breast",      "Meat"],
-  ["Ground Beef 500g",    "Meat"],
-  ["Salmon Fillet",       "Seafood"],
-  ["Frozen Peas 1kg",     "Frozen"],
-  ["Spaghetti 500g",      "Pantry"],
-  ["Basmati Rice 1kg",    "Pantry"],
-  ["Olive Oil 750ml",     "Pantry"],
-  ["Tomato Passata 700g", "Pantry"],
-  ["Cola Drink 1.5L",     "Beverage"],
-  ["Orange Juice 1L",     "Beverage"],
-  ["Potato Chips Paprika 200g", "Snacks"],
-  ["Dark Chocolate 70% 100g",   "Snacks"]
-]
-
-def random_description(name, category)
-  base = case category
-         when "Fruit"      then "Fresh #{name.downcase}, ideal as a snack or for desserts."
-         when "Vegetable"  then "Fresh #{name.downcase}, suitable for salads or cooking."
-         when "Dairy"      then "Chilled dairy product, keep refrigerated."
-         when "Bakery"     then "Freshly baked, best consumed within a few days."
-         when "Meat"       then "Chilled meat product, cook thoroughly before consumption."
-         when "Seafood"    then "Fresh seafood, keep refrigerated and consume quickly."
-         when "Frozen"     then "Frozen product, store at -18°C."
-         when "Pantry"     then "Shelf‑stable pantry staple for everyday cooking."
-         when "Beverage"   then "Ready‑to‑drink beverage, serve chilled."
-         when "Snacks"     then "Ready‑to‑eat snack for any occasion."
-         else "Grocery product."
-         end
-  "#{name}. #{base}"
-end
-
-def random_minimum_qty(category)
-  case category
-  when "Fruit", "Vegetable", "Meat", "Seafood", "Frozen", "Pantry", "Snacks"
-    [0.25, 0.3, 0.5, 1.0].sample
-  when "Dairy", "Bakery", "Beverage"
-    [0.5, 1.0, 1.5].sample
-  else
-    1.0
-  end
-end
-
-def random_price_unit(price_kg, minimum_qty)
-  # price per unit ≈ price per kg * qty, plus small random factor
-  (price_kg * minimum_qty * rand(0.9..1.3)).round(2)
-end
-
-def random_price_kg(range)
-  (rand(range)).round(2)
-end
-
-def random_days_until_expire(range)
-  rand(range)
-end
-
-10.times do |i|
-  base_name, category = BASE_PRODUCTS.sample
-  config = CATEGORIES[category]
-
-  price_kg = random_price_kg(config[:price_kg])
-  min_qty  = random_minimum_qty(category)
-  price_unit = random_price_unit(price_kg, min_qty)
-  days      = random_days_until_expire(config[:shelf])
-  country   = COUNTRIES.sample
-
-  variant_suffix =
-    case category
-    when "Fruit", "Vegetable"
-      %w[Class\ I Organic Conventional].sample
-    when "Meat", "Seafood"
-      %w[Standard Premium Family\ Pack].sample
-    when "Bakery"
-      %w[Sliced Rustic Small Large].sample
-    else
-      %w[Classic Original Family\ Pack Value\ Pack None].sample
-    end
-
-  name =
-    if variant_suffix == "None"
-      base_name
-    else
-      "#{base_name} #{variant_suffix}"
-    end
-
-  attrs = {
-    name:               name,
-    description:        random_description(base_name, category),
-    category:           category,
-    minimum_qty:        min_qty,
-    price_unit:         price_unit,
-    price_kg:           price_kg,
-    country_of_origin:  country,
-    days_until_expired: days
+example_products = [
+  {
+  "name": "Organic Apples",
+  "description": "Fresh, crisp red apples, ideal for snacking or baking.",
+  "category": "Fruits",
+  "minimum_qty": 0.5,
+  "min_qty_type": "kg",
+  "price_unit": 1.99,
+  "unit_description": "pack of 4",
+  "price_kg": 3.98,
+  "country_of_origin": "United States",
+  "days_until_expired": 14,
+  "image_url": "https://cdn.pixabay.com/photo/2016/09/29/08/33/apple-1702316_1280.jpg"
+  },
+  {
+  "name": "Whole Milk",
+  "description": "Pasteurized full-fat milk from grass-fed cows, 1 gallon jug.",
+  "category": "Dairy",
+  "minimum_qty": 1.0,
+  "min_qty_type": "l",
+  "price_unit": 3.49,
+  "unit_description": "tetra pack of 1 l",
+  "price_kg": 3.49,
+  "country_of_origin": "United States",
+  "days_until_expired": 21,
+  "image_url": "https://static.apolonia.com/fotos/produtos/21/211869_01_24-02-2025_g.jpg"
+  },
+  {
+  "name": "White Bread",
+  "description": "Sliced white loaf bread, soft and fresh for sandwiches.",
+  "category": "Bakery",
+  "minimum_qty": 1.0,
+  "min_qty_type": "piece",
+  "price_unit": 2.29,
+  "unit_description": "one piece",
+  "price_kg": 4.58,
+  "country_of_origin": "Canada",
+  "days_until_expired": 7,
+  "image_url": "https://www.seriouseats.com/thmb/LoXQL7Yp_uXxtipH8cCp_LGVg5E=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2014__08__20140810-workhorse-bread-vicky-wasik-3-3a86ee51da2e4a7b8239ceb62d8d8d17.jpg"
+  },
+  {
+  "name": "Canned Tomatoes",
+  "description": "Diced tomatoes in juice, no added salt, 28 oz can.",
+  "category": "Canned Goods",
+  "minimum_qty": 1,
+  "min_qty_type": "piece",
+  "price_unit": 1.19,
+  "unit_description": "can of 750 g",
+  "price_kg": 1.68,
+  "country_of_origin": "Italy",
+  "days_until_expired": 1095,
+  "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1wxgvJ-J3V9P9yk6OH5dMuh7YkIwceWtDXA&s"
+  },
+  {
+  "name": "Chicken Breast",
+  "description": "Boneless, skinless chicken breasts, fresh pack of 1 lb.",
+  "category": "Meat",
+  "minimum_qty": 1,
+  "min_qty_type": "piece",
+  "price_unit": 4.99,
+  "unit_description": "pack of 2 breasts",
+  "price_kg": 11.0,
+  "country_of_origin": "United States",
+  "days_until_expired": 5,
+  "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZ5CNJPuS3s3iQLhK8V0RRaNmuPuEu8_NOJw&s"
+  },
+  {
+  "name": "Broccoli",
+  "description": "Fresh green broccoli heads, rich in vitamins, per bunch.",
+  "category": "Vegetables",
+  "minimum_qty": 0.3,
+  "min_qty_type": "kg",
+  "price_unit": 1.79,
+  "unit_description": "quater of a broccoli",
+  "price_kg": 5.97,
+  "country_of_origin": "Mexico",
+  "days_until_expired": 10,
+  "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3jhpPKRJxljeORwNbUy0XC9aS9qERhtykJw&s"
+  },
+  {
+  "name": "Pasta Spaghetti",
+  "description": "Dry durum wheat spaghetti, 16 oz package.",
+  "category": "Pasta",
+  "minimum_qty": 1,
+  "min_qty_type": "piece",
+  "price_unit": 1.49,
+  "unit_description": "pack of 250 g",
+  "price_kg": 3.31,
+  "country_of_origin": "Italy",
+  "days_until_expired": 365,
+  "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHA0RiYpubnUda21AcIuf-pldi-URLvzon-w&s"
+  },
+  {
+  "name": "Cheddar Cheese",
+  "description": "Aged sharp cheddar cheese block, 8 oz.",
+  "category": "Dairy",
+  "minimum_qty": 0.23,
+  "min_qty_type": "kg",
+  "price_unit": 2.99,
+  "unit_description": "slice of 150 g",
+  "price_kg": 14.95,
+  "country_of_origin": "Ireland",
+  "days_until_expired": 28,
+  "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGL_9cC4kM0DfB4YpNT2wgbtmMubJV9YL8EA&s"
+  },
+  {
+  "name": "Bananas",
+  "description": "Ripe yellow bananas, bunch of 5-6, naturally sweet.",
+  "category": "Fruits",
+  "minimum_qty": 0.5,
+  "min_qty_type": "kg",
+  "price_unit": 0.59,
+  "unit_description": "pack of 500",
+  "price_kg": 1.18,
+  "country_of_origin": "Madeira, Portugal",
+  "days_until_expired": 7,
+  "image_url": "https://www.continente.pt/dw/image/v2/BDVS_PRD/on/demandware.static/-/Sites-col-master-catalog/default/dwd4c8df36/images/col/207/2076480-frente.jpg?sw=2000&sh=2000"
+  },
+  {
+  "name": "Orange Juice",
+  "description": "Fresh squeezed orange juice, no pulp, 64 oz carton.",
+  "category": "Beverages",
+  "minimum_qty": 1,
+  "min_qty_type": "l",
+  "price_unit": 3.99,
+  "unit_description": "bottle of 1 l",
+  "price_kg": 2.11,
+  "country_of_origin": "United States",
+  "days_until_expired": 14,
+  "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnDyg9G8txGuNdWvzJERP_fNeF0ChN8EBceA&s"
   }
+]
 
-  # For seeding:
-  prod = Product.new(attrs)
-  prod.photo.attach(io: config[:img], filename: "#{category}.jpg", content_type: "image/png")
-  prod.save!
-  # Or, if you just want to inspect:
-  # puts attrs.inspect
-  puts "created a product"
+example_products.each do |example_product|
+  product = Product.new
+  product.name = example_product[:name]
+  product.description = example_product[:description]
+  product.category = example_product[:category]
+  product.minimum_qty = example_product[:minimum_qty]
+  product.min_qty_type = example_product[:min_qty_type]
+  product.price_unit = example_product[:price_unit]
+  product.unit_description = example_product[:unit_description]
+  product.price_kg = example_product[:price_kg]
+  product.country_of_origin = example_product[:country_of_origin]
+  product.days_until_expired = example_product[:days_until_expired]
+  file = URI.parse(example_product[:image_url]).open
+  product.photo.attach(io: file, filename: "#{example_product[:name]}_#{example_product[:category]}.jpg", content_type: "image/jpg")
+  product.save!
 end
-puts "created #{Product.count} number of products, e.g. #{Product.first.name}"
+
+puts "created #{Product.count} products"
